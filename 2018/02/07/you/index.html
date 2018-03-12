@@ -15,7 +15,7 @@
 <meta property="og:url" content="https://github.com/xp-git/carlyle/2018/02/07/you/index.html">
 <meta property="og:site_name" content="Carlyle">
 <meta property="og:description" content="红豆生南国，春来发几枝。愿君多采撷，此物最相思。">
-<meta property="og:updated_time" content="2018-03-12T11:55:30.395Z">
+<meta property="og:updated_time" content="2018-03-12T12:05:20.365Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="思">
 <meta name="twitter:description" content="红豆生南国，春来发几枝。愿君多采撷，此物最相思。">
@@ -23,7 +23,7 @@
     <link rel="alternative" href="/atom.xml" title="Carlyle" type="application/atom+xml">
   
   
-    <link rel="icon" href="/favicon.png">
+    <link rel="icon" href="/favicon.ico">
   
   <link rel="stylesheet" type="text/css" href="/carlyle/./main.0cf68a.css">
   <style type="text/css">
@@ -193,10 +193,39 @@
 </a>
         
       </header>
+		
+				<span class="archive-article-date">
+					阅读量 <span id="busuanzi_value_page_pv"></span>
+				</span>
+		
     
 
     <!-- 目录内容 -->
-   
+
+    <p class="show-toc-btn" id="show-toc-btn" onclick="showToc();" style="display:none">
+          <span class="btn-bg"></span>
+          <span class="btn-text">文章导航</span>
+          </p>
+  <div id="toc-article" class="toc-article">
+      <span id="toc-close" class="toc-close" title="隐藏导航" onclick="showBtn();">×</span>
+    <strong class="toc-title">文章目录</strong>
+           
+         </div>
+   <script type="text/javascript">
+  function showToc(){
+    var toc_article = document.getElementById("toc-article");
+    var show_toc_btn = document.getElementById("show-toc-btn");
+    toc_article.setAttribute("style","display:block");
+    show_toc_btn.setAttribute("style","display:none");
+    };
+  function showBtn(){
+    var toc_article = document.getElementById("toc-article");
+    var show_toc_btn = document.getElementById("show-toc-btn");
+    toc_article.setAttribute("style","display:none");
+    show_toc_btn.setAttribute("style","display:block");
+    };
+   </script>
+         
 <!-- 目录内容结束 -->
     
     <div class="article-entry" itemprop="articleBody">
@@ -344,6 +373,19 @@
         </div>
         
         
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    目录，不存在的…
+                    </div>
+                </span>
+            </div>
+        </div>
+        
     </div>
 </aside>
 
@@ -373,11 +415,16 @@
           </div>
         </div>
       </div>
-      <footer id="footer">
+      <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<footer id="footer">
   <div class="outer">
     <div id="footer-info">
     	<div class="footer-left">
     		&copy; 2018 Carlyle
+			<span id="busuanzi_container_site_uv"> 
+			  本站访客数<span id="busuanzi_value_site_uv"></span>人次
+			</span>
     	</div>
       	<div class="footer-right">
       		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
@@ -481,11 +528,11 @@ MathJax.Hub.Queue(function() {
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">I</a>
+                <a href="javascript:void(0)" class="js-tag color4">You</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">You</a>
+                <a href="javascript:void(0)" class="js-tag color2">I</a>
               </li>
             
             <div class="clearfix"></div>
