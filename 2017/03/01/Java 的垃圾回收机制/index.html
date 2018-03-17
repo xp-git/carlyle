@@ -6,19 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://github.com/xp-git/carlyle">
-  <title>分布式与集群 | Carlyle</title>
+  <title>Java基础学习（一） | Carlyle</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="分布式：一个业务分拆多个子业务，部署在不同的服务器上 集群：同一个业务，部署在多个服务器上">
-<meta name="keywords" content="设计架构">
+  <meta name="description" content="Java 的垃圾回收机制 Java 的垃圾回收器是作为一个单独的低级别的线程运行，在补课预知的情况下对内存堆中已经死亡或者长时间没有使用的对象进行清楚和回收。程序员不能实时的调用垃圾回收期对某个对象或所有对象进行垃圾回收。但是程序员可以手动去执行System.gc()，通知GC去运行，单Java不一定保证GC一定会运行。 where 在哪里回收，内存。 when 什么时候被回收的。 这里涉及到两种">
+<meta name="keywords" content="Java基础">
 <meta property="og:type" content="article">
-<meta property="og:title" content="分布式与集群">
-<meta property="og:url" content="https://github.com/xp-git/carlyle/2018/03/14/20180314分布式与集群/index.html">
+<meta property="og:title" content="Java基础学习（一）">
+<meta property="og:url" content="https://github.com/xp-git/carlyle/2017/03/01/Java 的垃圾回收机制/index.html">
 <meta property="og:site_name" content="Carlyle">
-<meta property="og:description" content="分布式：一个业务分拆多个子业务，部署在不同的服务器上 集群：同一个业务，部署在多个服务器上">
-<meta property="og:updated_time" content="2018-03-14T12:41:56.933Z">
+<meta property="og:description" content="Java 的垃圾回收机制 Java 的垃圾回收器是作为一个单独的低级别的线程运行，在补课预知的情况下对内存堆中已经死亡或者长时间没有使用的对象进行清楚和回收。程序员不能实时的调用垃圾回收期对某个对象或所有对象进行垃圾回收。但是程序员可以手动去执行System.gc()，通知GC去运行，单Java不一定保证GC一定会运行。 where 在哪里回收，内存。 when 什么时候被回收的。 这里涉及到两种">
+<meta property="og:updated_time" content="2018-03-17T08:10:42.417Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="分布式与集群">
-<meta name="twitter:description" content="分布式：一个业务分拆多个子业务，部署在不同的服务器上 集群：同一个业务，部署在多个服务器上">
+<meta name="twitter:title" content="Java基础学习（一）">
+<meta name="twitter:description" content="Java 的垃圾回收机制 Java 的垃圾回收器是作为一个单独的低级别的线程运行，在补课预知的情况下对内存堆中已经死亡或者长时间没有使用的对象进行清楚和回收。程序员不能实时的调用垃圾回收期对某个对象或所有对象进行垃圾回收。但是程序员可以手动去执行System.gc()，通知GC去运行，单Java不一定保证GC一定会运行。 where 在哪里回收，内存。 when 什么时候被回收的。 这里涉及到两种">
   
     <link rel="alternative" href="/atom.xml" title="Carlyle" type="application/atom+xml">
   
@@ -176,20 +176,20 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-20180314分布式与集群" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-Java 的垃圾回收机制" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      分布式与集群
+      Java基础学习（一）
     </h1>
   
 
         
-        <a href="/carlyle/2018/03/14/20180314分布式与集群/" class="archive-article-date">
-  	<time datetime="2018-03-14T14:55:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-03-14</time>
+        <a href="/carlyle/2017/03/01/Java 的垃圾回收机制/" class="archive-article-date">
+  	<time datetime="2017-03-01T02:55:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-03-01</time>
 </a>
         
 		
@@ -210,7 +210,7 @@
   <div id="toc-article" class="toc-article">
       <span id="toc-close" class="toc-close" title="隐藏导航" onclick="showBtn();">×</span>
     <strong class="toc-title">文章目录</strong>
-           <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#分布式："><span class="toc-number">1.</span> <span class="toc-text">分布式：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#集群："><span class="toc-number">2.</span> <span class="toc-text">集群：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#单机结构"><span class="toc-number">3.</span> <span class="toc-text">单机结构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#集群结构"><span class="toc-number">4.</span> <span class="toc-text">集群结构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#分布式结构"><span class="toc-number">5.</span> <span class="toc-text">分布式结构</span></a></li></ol>
+           
          </div>
    <script type="text/javascript">
   function showToc(){
@@ -231,28 +231,18 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="分布式："><a href="#分布式：" class="headerlink" title="分布式："></a>分布式：</h2><p>一个业务分拆多个子业务，部署在不同的服务器上</p>
-<h2 id="集群："><a href="#集群：" class="headerlink" title="集群："></a>集群：</h2><p>同一个业务，部署在多个服务器上<br><a id="more"></a> </p>
-<h2 id="单机结构"><a href="#单机结构" class="headerlink" title="单机结构"></a>单机结构</h2><p>我想大家最最最熟悉的就是单机结构，一个系统业务量很小的时候所有的代码都放在一个项目中就好了，然后这个项目部署在一台服务器上就好了。整个项目所有的服务都由这台服务器提供。这就是单机结构。</p>
-<p>那么，单机结构有啥缺点呢？我想缺点是显而易见的，单机的处理能力毕竟是有限的，当你的业务增长到一定程度的时候，单机的硬件资源将无法满足你的业务需求。此时便出现了集群模式，往下接着看。</p>
-<h2 id="集群结构"><a href="#集群结构" class="headerlink" title="集群结构"></a>集群结构</h2><p>集群模式在程序猿界有各种装逼解释，有的让你根本无法理解，其实就是一个很简单的玩意儿，且听我一一道来。</p>
-<p>单机处理到达瓶颈的时候，你就把单机复制几份，这样就构成了一个“集群”。集群中每台服务器就叫做这个集群的一个“节点”，所有节点构成了一个集群。每个节点都提供相同的服务，那么这样系统的处理能力就相当于提升了好几倍（有几个节点就相当于提升了这么多倍）。</p>
-<p>但问题是用户的请求究竟由哪个节点来处理呢？最好能够让此时此刻负载较小的节点来处理，这样使得每个节点的压力都比较平均。要实现这个功能，就需要在所有节点之前增加一个“调度者”的角色，用户的所有请求都先交给它，然后它根据当前所有节点的负载情况，决定将这个请求交给哪个节点处理。这个“调度者”有个牛逼了名字——负载均衡服务器。</p>
-<p>集群结构的好处就是系统扩展非常容易。如果随着你们系统业务的发展，当前的系统又支撑不住了，那么给这个集群再增加节点就行了。但是，当你的业务发展到一定程度的时候，你会发现一个问题——无论怎么增加节点，貌似整个集群性能的提升效果并不明显了。这时候，你就需要使用微服务结构了。</p>
-<h2 id="分布式结构"><a href="#分布式结构" class="headerlink" title="分布式结构"></a>分布式结构</h2><p>先来对前面的知识点做个总结。</p>
-<p>从单机结构到集群结构，你的代码基本无需要作任何修改，你要做的仅仅是多部署几台服务器，每台服务器上运行相同的代码就行了。但是，当你要从集群结构演进到微服务结构的时候，之前的那套代码就需要发生较大的改动了。所以对于新系统我们建议，系统设计之初就采用微服务架构，这样后期运维的成本更低。但如果一套老系统需要升级成微服务结构的话，那就得对代码大动干戈了。所以，对于老系统而言，究竟是继续保持集群模式，还是升级成微服务架构，这需要你们的架构师深思熟虑、权衡投入产出比。</p>
-<p>OK，下面开始介绍所谓的分布式结构。分布式结构就是将一个完整的系统，按照业务功能，拆分成一个个独立的子系统，在分布式结构中，每个子系统就被称为“服务”。这些子系统能够独立运行在web容器中，它们之间通过RPC方式通信。</p>
-<p>举个例子，假设需要开发一个在线商城。按照微服务的思想，我们需要按照功能模块拆分成多个独立的服务，如：用户服务、产品服务、订单服务、后台管理服务、数据分析服务等等。这一个个服务都是一个个独立的项目，可以独立运行。如果服务之间有依赖关系，那么通过RPC方式调用。这样的好处有很多：</p>
-<ol>
-<li>系统之间的耦合度大大降低，可以独立开发、独立部署、独立测试，系统与系统之间的边界非常明确，排错也变得相当容易，开发效率大大提升。</li>
-</ol>
-<ol>
-<li>系统之间的耦合度降低，从而系统更易于扩展。我们可以针对性地扩展某些服务。假设这个商城要搞一次大促，下单量可能会大大提升，因此我们可以针对性地提升订单系统、产品系统的节点数量，而对于后台管理系统、数据分析系统而言，节点数量维持原有水平即可。</li>
-</ol>
-<ol>
-<li>服务的复用性更高。比如，当我们将用户系统作为单独的服务后，该公司所有的产品都可以使用该系统作为用户系统，无需重复开发。</li>
-</ol>
-<p>以上内容来自知乎的整理<br>作者：大闲人柴毛毛<br>链接：<a href="https://www.zhihu.com/question/20004877/answer/282033178" target="_blank" rel="noopener">https://www.zhihu.com/question/20004877/answer/282033178</a><br>来源：知乎</p>
+        <p>Java 的垃圾回收机制</p>
+<p>Java 的垃圾回收器是作为一个单独的低级别的线程运行，在补课预知的情况下对内存堆中已经死亡或者长时间没有使用的对象进行清楚和回收。程序员不能实时的调用垃圾回收期对某个对象或所有对象进行垃圾回收。但是程序员可以手动去执行System.gc()，通知GC去运行，单Java不一定保证GC一定会运行。</p>
+<p>where 在哪里回收，内存。</p>
+<p>when 什么时候被回收的。</p>
+<p>这里涉及到两种做法：引用计数法和可达性分析算法。这里还设计到四中引用方式：强引用，软引用，弱引用和虚引用。其引用强度越来越低，意味着越弱的对象越容易被垃圾回收。</p>
+<p>how 对象如何被回收的？4中垃圾回收算法。</p>
+<p>2 Jvm 的内存模型。</p>
+<p>方法区:虚拟机栈，本地方法栈。</p>
+<p>对象：heap 堆。</p>
+<p>3 JVM的4中引用方式和使用场景</p>
+<p>⑴强引用（StrongReference）<br>强引用是使用最普遍的引用。如果一个对象具有强引用，那垃圾回收器绝<br>不会回收它。当内存空间不足，Java 虚拟机宁愿抛出 OutOfMemoryError 错误，<br>使程序异常终止，也不会靠随意回收具有强引用的对象来解决内存不足的问<br>题。 ps：强引用其实也就是我们平时 A a = new A()这个意思。</p>
+<p>⑵软引用（SoftReference）<br>如果一个对象只具有软引用，则内存空间足够，垃圾回收器就不会回收它；<br>如果内存空间不足了，就会回收这些对象的内存。只要垃圾回收器没有回收它，<br>该对象就可以被程序使用。软引用可用来实现内存敏感的高速缓存（下文给出<br>示例）。<br>软引用可以和一个引用队列（ReferenceQueue）联合使用，如果软引用所<br>引用的对象被垃圾回收器回收，Java 虚拟机就会把这个软引用加入到与之关联<br>的引用队列中。<br>示例：实现学生信息查询操作时有两套数据操作的方案。<br>一、将得到的信息存放在内存中，后续查询则直接读取内存信息（优点：<br>读取速度快；缺点：内存空间一直被占，若资源访问量不高，则浪费内存空间）。<br>二、每次查询均从数据库读取，然后填充到 TO 返回。（优点：内存空间<br>将被 GC 回收，不会一直被占用；缺点：在 GC 发生之前已有的 TO 依然存在，<br>但还是执行了一次数据库查询，浪费 IO）。<br>可以通过软引用来解决。<br>⑶弱引用（WeakReference）<br>弱引用与软引用的区别在于：只具有弱引用的对象拥有更短暂的生命周期。<br>在垃圾回收器线程扫描它所管辖的内存区域的过程中，一旦发现了只具有弱引<br>用的对象，不管当前内存空间足够与否，都会回收它的内存。不过，由于垃圾<br>回收器是一个优先级很低的线程，因此不一定会很快发现那些只具有弱引用的<br>对象。<br>弱引用可以和一个引用队列（ReferenceQueue）联合使用，如果弱引用所<br>引用的对象被垃圾回收，Java 虚拟机就会把这个弱引用加入到与之关联的引用<br>队列中。<br>⑷虚引用（PhantomReference）<br>“虚引用”顾名思义，就是形同虚设，与其他几种引用都不同，虚引用并不会<br>决定对象的生命周期。如果一个对象仅持有虚引用，那么它就和没有任何引用<br>微信公众号：内推军。每天都会分享大量的求职内推信息，<br>欢迎关注！<br>）<br>4<br>一样，在任何时候都可能被垃圾回收器回收。<br>虚引用主要用来跟踪对象被垃圾回收器回收的活动。虚引用与软引用和弱<br>引用的一个区别在于：虚引用必须和引用队列 （ReferenceQueue）联合使用。<br>当垃圾回收器准备回收一个对象时，如果发现它还有虚引用，就会在回收对象<br>的内存之前，把这个虚引用加入到与之关联的引用队列中。</p>
 
       
 
@@ -297,7 +287,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">设计架构</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Java基础</a>
         		</li>
       		
 		</ul>
@@ -353,7 +343,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=https://github.com/xp-git/carlyle/2018/03/14/20180314分布式与集群/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=https://github.com/xp-git/carlyle/2017/03/01/Java 的垃圾回收机制/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -367,11 +357,15 @@
   
 <nav id="article-nav">
   
-  
-    <a href="/carlyle/2018/03/14/20180314文件上传/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">spring mvc 上传文件</div>
-      <i class="icon-circle-right"></i>
+    <a href="/carlyle/2018/02/01/Redis学习1/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          Redis的基本认识（一）
+        
+      </div>
     </a>
+  
   
 </nav>
 
@@ -396,7 +390,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#分布式："><span class="toc-number">1.</span> <span class="toc-text">分布式：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#集群："><span class="toc-number">2.</span> <span class="toc-text">集群：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#单机结构"><span class="toc-number">3.</span> <span class="toc-text">单机结构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#集群结构"><span class="toc-number">4.</span> <span class="toc-text">集群结构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#分布式结构"><span class="toc-number">5.</span> <span class="toc-text">分布式结构</span></a></li></ol>
+                    目录，不存在的…
                     </div>
                 </span>
             </div>
@@ -412,7 +406,7 @@
   
 
   
-  <div id="SOHUCS" sid="20180314分布式与集群" ></div> 
+  <div id="SOHUCS" sid="Java 的垃圾回收机制" ></div> 
 <script charset="utf-8" type="text/javascript" src="//changyan.sohu.com/upload/changyan.js" ></script>
 <script type="text/javascript">
     window.changyan.api.config({
@@ -461,7 +455,7 @@
 		toc_hide_index: true,
 		root: "/carlyle/",
 		innerArchive: true,
-		showTags: true
+		showTags: false
 	}
 </script>
 
@@ -548,6 +542,10 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Java基础</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">redis</a>
               </li>
              
@@ -556,7 +554,7 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Markdown语法</a>
+                <a href="javascript:void(0)" class="js-tag color1">spring mvc</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -564,7 +562,7 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">spring mvc</a>
+                <a href="javascript:void(0)" class="js-tag color1">Markdown语法</a>
               </li>
             
             <div class="clearfix"></div>
@@ -647,7 +645,7 @@ MathJax.Hub.Queue(function() {
     
     	<section class="tools-section tools-section-me" q-show="aboutme">
   	  	
-  	  		<div class="aboutme-wrap" id="js-aboutme">小生不才&lt;br&gt;&lt;br&gt;只做了一点微小的工作&lt;br&gt;Thank you</div>
+  	  		<div class="aboutme-wrap" id="js-aboutme">小生不才 &lt;br&gt;&lt;br&gt; 只做了一点微小的工作 &lt;br&gt; Thank you</div>
   	  	
     	</section>
     
