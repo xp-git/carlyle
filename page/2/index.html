@@ -195,7 +195,7 @@
 <li>间接继承的接口：Iterable</li>
 <li>实现类：ArrayList、LinkedList、Vector等</li>
 </ul>
-<p>##简介</p>
+<p>###简介</p>
 <ul>
 <li>List是有序的<strong>Collection</strong><ul>
 <li>可以对每个元素的插入位置进行精准控制</li>
@@ -206,12 +206,12 @@
 <li>有自己的迭代器 ListIterator</li>
 <li>如果元素包含自身，equals()和hashCode()不再是良定义的</li>
 </ul>
-<h2 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h2><p><strong>boolean add(E e)</strong>: 添加到末尾<br><strong>void add(int index, E e)</strong>: 添加到指定位置  </p>
+<h3 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h3><p><strong>boolean add(E e)</strong>: 添加到末尾<br><strong>void add(int index, E e)</strong>: 添加到指定位置  </p>
 <p><strong>E set(int index, E e)</strong>: 设置指定位置的元素,返回一个E<br><strong>get(int index)</strong>: 获得指定位置的元素  </p>
 <p><strong>Iterator iterator()</strong><br><strong>ListIterator listIterator()</strong><br><strong>ListIterator listIterator(int index)</strong>  </p>
 <p><strong>int indexOf(E e)</strong><br><strong>int lastIndexOf(E e)</strong></p>
 <p><strong>List<e> subList(int fromIndex, int toIndex)</e></strong></p>
-<p>##子类介绍</p>
+<p>###子类介绍</p>
 <ol>
 <li>ArrayList是一个可改变大小的数组，当更多的元素加入到ArrayList中时，其大小将会动态的增长。内部的元素可以直接通过get与set方法进行访问，因为ArrayList本质上就是一个数组</li>
 <li>LinkedList 是一个双链表,在添加和删除元素时具有比ArrayList更好的性能.但在get与set方面弱于ArrayList.当然,这些对比都是指数据量很大或者操作很频繁的情况下的对比,如果数据和运算量很小,那么对比将失去意义。<br>LinkedList还实现了Queue接口，该接口比List提供了更多的方法，包括offer(),peek(),poll等</li>
@@ -270,7 +270,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>toc: true<br>layout: post<br>title: Java基础学习（一）<br>date: 2017-03-06 20:55<br>comments: true<br>tags: </p>
+        <p>toc: true<br>layout: post<br>title: LinkedList源码<br>date: 2017-03-06 20:55<br>comments: true<br>tags: JavaSE</p>
 <p>##LinkedList简介</p>
 <p>LinkedList是基于双向循环链表（从源码中可以很容易看出）实现的，除了可以当作链表来操作外，它还可以当作栈，队列和双端队列来使用。</p>
 <p>LinkedList同样是非线程安全的，只在单线程下适合使用。</p>
@@ -462,11 +462,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">设计架构</a>
+                <a href="javascript:void(0)" class="js-tag color1">redis</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">redis</a>
+                <a href="javascript:void(0)" class="js-tag color1">spring mvc</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -474,7 +474,7 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">spring mvc</a>
+                <a href="javascript:void(0)" class="js-tag color5">设计架构</a>
               </li>
              
               <li class="article-tag-list-item">
