@@ -177,98 +177,6 @@
           <div id="js-content" class="content-ll">
             
   
-    <article id="post-Java 的垃圾回收机制" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/carlyle/2017/03/01/Java 的垃圾回收机制/">Java基础学习（一）</a>
-    </h1>
-  
-
-        
-        <a href="/carlyle/2017/03/01/Java 的垃圾回收机制/" class="archive-article-date">
-  	<time datetime="2017-03-01T02:55:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-03-01</time>
-</a>
-        
-		
-      </header>
-		
-    
-
-    <!-- 目录内容 -->
-   
-<!-- 目录内容结束 -->
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Java 的垃圾回收机制</p>
-<p>Java 的垃圾回收器是作为一个单独的低级别的线程运行，在补课预知的情况下对内存堆中已经死亡或者长时间没有使用的对象进行清楚和回收。程序员不能实时的调用垃圾回收期对某个对象或所有对象进行垃圾回收。但是程序员可以手动去执行System.gc()，通知GC去运行，单Java不一定保证GC一定会运行。</p>
-<p>where 在哪里回收，内存。</p>
-<p>when 什么时候被回收的。</p>
-<p>这里涉及到两种做法：引用计数法和可达性分析算法。这里还设计到四中引用方式：强引用，软引用，弱引用和虚引用。其引用强度越来越低，意味着越弱的对象越容易被垃圾回收。</p>
-<p>how 对象如何被回收的？4中垃圾回收算法。</p>
-<p>2 Jvm 的内存模型。</p>
-<p>方法区:虚拟机栈，本地方法栈。</p>
-<p>对象：heap 堆。</p>
-<p>3 JVM的4中引用方式和使用场景</p>
-<p>⑴强引用（StrongReference）<br>强引用是使用最普遍的引用。如果一个对象具有强引用，那垃圾回收器绝<br>不会回收它。当内存空间不足，Java 虚拟机宁愿抛出 OutOfMemoryError 错误，<br>使程序异常终止，也不会靠随意回收具有强引用的对象来解决内存不足的问<br>题。 ps：强引用其实也就是我们平时 A a = new A()这个意思。</p>
-<p>⑵软引用（SoftReference）<br>如果一个对象只具有软引用，则内存空间足够，垃圾回收器就不会回收它；<br>如果内存空间不足了，就会回收这些对象的内存。只要垃圾回收器没有回收它，<br>该对象就可以被程序使用。软引用可用来实现内存敏感的高速缓存（下文给出<br>示例）。<br>软引用可以和一个引用队列（ReferenceQueue）联合使用，如果软引用所<br>引用的对象被垃圾回收器回收，Java 虚拟机就会把这个软引用加入到与之关联<br>的引用队列中。<br>示例：实现学生信息查询操作时有两套数据操作的方案。<br>一、将得到的信息存放在内存中，后续查询则直接读取内存信息（优点：<br>读取速度快；缺点：内存空间一直被占，若资源访问量不高，则浪费内存空间）。<br>二、每次查询均从数据库读取，然后填充到 TO 返回。（优点：内存空间<br>将被 GC 回收，不会一直被占用；缺点：在 GC 发生之前已有的 TO 依然存在，<br>但还是执行了一次数据库查询，浪费 IO）。<br>可以通过软引用来解决。<br>⑶弱引用（WeakReference）<br>弱引用与软引用的区别在于：只具有弱引用的对象拥有更短暂的生命周期。<br>在垃圾回收器线程扫描它所管辖的内存区域的过程中，一旦发现了只具有弱引<br>用的对象，不管当前内存空间足够与否，都会回收它的内存。不过，由于垃圾<br>回收器是一个优先级很低的线程，因此不一定会很快发现那些只具有弱引用的<br>对象。<br>弱引用可以和一个引用队列（ReferenceQueue）联合使用，如果弱引用所<br>引用的对象被垃圾回收，Java 虚拟机就会把这个弱引用加入到与之关联的引用<br>队列中。<br>⑷虚引用（PhantomReference）<br>“虚引用”顾名思义，就是形同虚设，与其他几种引用都不同，虚引用并不会<br>决定对象的生命周期。如果一个对象仅持有虚引用，那么它就和没有任何引用<br>微信公众号：内推军。每天都会分享大量的求职内推信息，<br>欢迎关注！<br>）<br>4<br>一样，在任何时候都可能被垃圾回收器回收。<br>虚引用主要用来跟踪对象被垃圾回收器回收的活动。虚引用与软引用和弱<br>引用的一个区别在于：虚引用必须和引用队列 （ReferenceQueue）联合使用。<br>当垃圾回收器准备回收一个对象时，如果发现它还有虚引用，就会在回收对象<br>的内存之前，把这个虚引用加入到与之关联的引用队列中。</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Java基础</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/carlyle/2017/03/01/Java 的垃圾回收机制/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
     <article id="post-Java集合框架" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -937,10 +845,6 @@ MathJax.Hub.Queue(function() {
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">spring mvc</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">I</a>
               </li>
              
@@ -954,6 +858,10 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">redis</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">spring mvc</a>
               </li>
              
               <li class="article-tag-list-item">
