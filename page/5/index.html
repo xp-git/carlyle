@@ -177,8 +177,25 @@
           <div id="js-content" class="content-ll">
             
   
-    <article id="post-ArrayList 、 LinkedList 、 Vector 的底层实现和区别" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-Redis学习1" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/carlyle/2018/02/01/Redis学习1/">Redis的基本认识（一）</a>
+    </h1>
+  
+
+        
+        <a href="/carlyle/2018/02/01/Redis学习1/" class="archive-article-date">
+  	<time datetime="2018-02-01T02:55:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-02-01</time>
+</a>
+        
+		
+      </header>
+		
     
 
     <!-- 目录内容 -->
@@ -187,21 +204,21 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>toc: true<br>layout: post<br>title: Java基础学习（一）<br>date: 2017-03-05 20:55<br>comments: true<br>tags: </p>
-<p>#Java基础之集合List-ArrayList、LinkedList、Vector的底层实现和区别</p>
-<ol>
-<li>ArrayList底层实际是采用数组实现的（并且该数组的类型是Object类型的）</li>
-<li>如果jdk6,采用Array.copyOf()方法来生成一个新的数组，如果是jdk5，采用的是System.arraycopy()方法（当添加的数据量大于数组的长度的时候）</li>
-<li>List list = new ArrayList()时，底层会生成一个长度为10的数组来存放对象</li>
-<li>ArrayList、Vector底部都是采用数组实现的</li>
-<li>对于ArrayList，方法都不是同步的，对于Vector，大部分public方法都是同步的</li>
-<li>LinkedList采用双向循环列表</li>
-<li>对于ArrayList，查询速度很快，增加和删除（非最后一个节点）操作非常慢（本质上由数组的特性决定的）</li>
-<li>对于LinkedList，查询速度非常慢，增加和删除操作非常快（本质上是由双向循环列表决定的）</li>
-</ol>
-<p>参考博客：</p>
-<p><a href="http://blog.csdn.net/sundenskyqq/article/details/27630179" target="_blank" rel="noopener">http://blog.csdn.net/sundenskyqq/article/details/27630179</a></p>
-
+        <h1 id="Redis的基本认识（一）"><a href="#Redis的基本认识（一）" class="headerlink" title="Redis的基本认识（一）"></a>Redis的基本认识（一）</h1><h2 id="redis的五种数据类型"><a href="#redis的五种数据类型" class="headerlink" title="redis的五种数据类型"></a>redis的五种数据类型</h2><p><strong>1.String 字符串</strong>:</p>
+<ul>
+<li><p>string是redis最基本的类型，你可以理解成与Memcached一模一样的类型，一个key对应一个value。</p>
+</li>
+<li><p>string类型是二进制安全的。意思是redis的string可以包含任何数据。比如jpg图片或者序列化的对象 。</p>
+</li>
+<li>string类型是Redis最基本的数据类型，一个键最大能存储512MB。 </li>
+</ul>
+<p><strong>实列</strong></p>
+<p> 存数据：set key value</p>
+<p> 取数据： get key</p>
+<p> 查看数据类型：type key</p>
+        
+          <a class="article-more-a" href="/carlyle/2018/02/01/Redis学习1/#more">more >></a>
+        
       
 
       
@@ -209,11 +226,22 @@
     <div class="article-info article-info-index">
       
       
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">redis</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
       
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/carlyle/2018/04/02/ArrayList 、 LinkedList 、 Vector 的底层实现和区别/">展开全文 >></a>
+          <a class="article-more-a" href="/carlyle/2018/02/01/Redis学习1/">展开全文 >></a>
         </p>
       
 
@@ -243,20 +271,20 @@
 
 
   
-    <article id="post-分布式与集群" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-反射机制" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/carlyle/2018/03/14/分布式与集群/">分布式与集群</a>
+      <a class="article-title" href="/carlyle/2017/05/05/反射机制/">“Java基础学习（二）”</a>
     </h1>
   
 
         
-        <a href="/carlyle/2018/03/14/分布式与集群/" class="archive-article-date">
-  	<time datetime="2018-03-14T14:55:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-03-14</time>
+        <a href="/carlyle/2017/05/05/反射机制/" class="archive-article-date">
+  	<time datetime="2017-05-05T12:55:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-05-05</time>
 </a>
         
 		
@@ -270,11 +298,15 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="设计架构"><a href="#设计架构" class="headerlink" title="- 设计架构"></a>- 设计架构</h2><h2 id="分布式："><a href="#分布式：" class="headerlink" title="分布式："></a>分布式：</h2><p>一个业务分拆多个子业务，部署在不同的服务器上</p>
-<h2 id="集群："><a href="#集群：" class="headerlink" title="集群："></a>集群：</h2><p>同一个业务，部署在多个服务器上<br>
-        
-          <a class="article-more-a" href="/carlyle/2018/03/14/分布式与集群/#more">more >></a>
-        
+        <p>##反射机制<br>反射技术：其实就是动态加载一个指定的类，并获取该类中所有的内容。并将字节码文件中的内容都封装成对象，这样便于操作这些成员。简单说：反射技术可以对一个类进行解剖。</p>
+<p>反射的好处：大大增强了程序的扩展性。</p>
+<p>反射的基本步骤：</p>
+<ol>
+<li>获得Class对象，就是获得指定的名称的字节码文件对象</li>
+<li>实例化对象，获得类的属性、方法或者构造函数</li>
+<li>访问属性、调用方法、调用构造函数创建对象</li>
+</ol>
+
       
 
       
@@ -286,7 +318,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/carlyle/2018/03/14/分布式与集群/">展开全文 >></a>
+          <a class="article-more-a" href="/carlyle/2017/05/05/反射机制/">展开全文 >></a>
         </p>
       
 
@@ -318,7 +350,7 @@
   
   
     <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/carlyle/page/4/">&laquo; Prev</a><a class="page-number" href="/carlyle/">1</a><span class="space">&hellip;</span><a class="page-number" href="/carlyle/page/3/">3</a><a class="page-number" href="/carlyle/page/4/">4</a><span class="page-number current">5</span><a class="page-number" href="/carlyle/page/6/">6</a><a class="page-number" href="/carlyle/page/7/">7</a><span class="space">&hellip;</span><a class="page-number" href="/carlyle/page/15/">15</a><a class="extend next" rel="next" href="/carlyle/page/6/">Next &raquo;</a>
+      <a class="extend prev" rel="prev" href="/carlyle/page/4/">&laquo; Prev</a><a class="page-number" href="/carlyle/">1</a><span class="space">&hellip;</span><a class="page-number" href="/carlyle/page/3/">3</a><a class="page-number" href="/carlyle/page/4/">4</a><span class="page-number current">5</span><a class="page-number" href="/carlyle/page/6/">6</a><a class="page-number" href="/carlyle/page/7/">7</a><span class="space">&hellip;</span><a class="page-number" href="/carlyle/page/14/">14</a><a class="extend next" rel="next" href="/carlyle/page/6/">Next &raquo;</a>
     </nav>
   
 

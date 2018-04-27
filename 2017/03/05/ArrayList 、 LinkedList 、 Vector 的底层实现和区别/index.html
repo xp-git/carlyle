@@ -6,19 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://github.com/xp-git/carlyle">
-  <title>Carlyle</title>
+  <title>Java基础学习（一） | Carlyle</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="toc: truetitle: “Java基础学习（二）”date: 2017-05-05 20:55comments: truetags:  反射机制反射技术：其实就是动态加载一个指定的类，并获取该类中所有的内容。并将字节码文件中的内容都封装成对象，这样便于操作这些成员。简单说：反射技术可以对一个类进行解剖。 反射的好处：大大增强了程序的扩展性。 反射的基本步骤：  获得Class对象，就是获">
+  <meta name="description" content="#Java基础之集合List-ArrayList、LinkedList、Vector的底层实现和区别  ArrayList底层实际是采用数组实现的（并且该数组的类型是Object类型的） 如果jdk6,采用Array.copyOf()方法来生成一个新的数组，如果是jdk5，采用的是System.arraycopy()方法（当添加的数据量大于数组的长度的时候） List list = new Arr">
 <meta name="keywords" content="redis,前端,js,jquery,javascript,html5,Markdown语法,开发者,程序猿,程序媛,极客,编程,代码,开源,IT网站,Developer,Programmer,Coder,Geek,html,css,css3,用户体验,java,linux">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Carlyle">
-<meta property="og:url" content="https://github.com/xp-git/carlyle/2018/04/27/分布式与集群 - 副本/index.html">
+<meta property="og:title" content="Java基础学习（一）">
+<meta property="og:url" content="https://github.com/xp-git/carlyle/2017/03/05/ArrayList 、 LinkedList 、 Vector 的底层实现和区别/index.html">
 <meta property="og:site_name" content="Carlyle">
-<meta property="og:description" content="toc: truetitle: “Java基础学习（二）”date: 2017-05-05 20:55comments: truetags:  反射机制反射技术：其实就是动态加载一个指定的类，并获取该类中所有的内容。并将字节码文件中的内容都封装成对象，这样便于操作这些成员。简单说：反射技术可以对一个类进行解剖。 反射的好处：大大增强了程序的扩展性。 反射的基本步骤：  获得Class对象，就是获">
-<meta property="og:updated_time" content="2018-04-27T12:50:35.342Z">
+<meta property="og:description" content="#Java基础之集合List-ArrayList、LinkedList、Vector的底层实现和区别  ArrayList底层实际是采用数组实现的（并且该数组的类型是Object类型的） 如果jdk6,采用Array.copyOf()方法来生成一个新的数组，如果是jdk5，采用的是System.arraycopy()方法（当添加的数据量大于数组的长度的时候） List list = new Arr">
+<meta property="og:updated_time" content="2018-04-27T13:23:23.010Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Carlyle">
-<meta name="twitter:description" content="toc: truetitle: “Java基础学习（二）”date: 2017-05-05 20:55comments: truetags:  反射机制反射技术：其实就是动态加载一个指定的类，并获取该类中所有的内容。并将字节码文件中的内容都封装成对象，这样便于操作这些成员。简单说：反射技术可以对一个类进行解剖。 反射的好处：大大增强了程序的扩展性。 反射的基本步骤：  获得Class对象，就是获">
+<meta name="twitter:title" content="Java基础学习（一）">
+<meta name="twitter:description" content="#Java基础之集合List-ArrayList、LinkedList、Vector的底层实现和区别  ArrayList底层实际是采用数组实现的（并且该数组的类型是Object类型的） 如果jdk6,采用Array.copyOf()方法来生成一个新的数组，如果是jdk5，采用的是System.arraycopy()方法（当添加的数据量大于数组的长度的时候） List list = new Arr">
   
     <link rel="alternative" href="/atom.xml" title="Carlyle" type="application/atom+xml">
   
@@ -176,26 +176,74 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-分布式与集群 - 副本" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-ArrayList 、 LinkedList 、 Vector 的底层实现和区别" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Java基础学习（一）
+    </h1>
+  
+
+        
+        <a href="/carlyle/2017/03/05/ArrayList 、 LinkedList 、 Vector 的底层实现和区别/" class="archive-article-date">
+  	<time datetime="2017-03-05T12:55:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-03-05</time>
+</a>
+        
+		
+				<span class="archive-article-date">
+					阅读量 <span id="busuanzi_value_page_pv"></span>
+				</span>
+		
+      </header>
+		
     
 
     <!-- 目录内容 -->
-   
+
+    <p class="show-toc-btn" id="show-toc-btn" onclick="showToc();" style="display:none">
+          <span class="btn-bg"></span>
+          <span class="btn-text">文章导航</span>
+          </p>
+  <div id="toc-article" class="toc-article">
+      <span id="toc-close" class="toc-close" title="隐藏导航" onclick="showBtn();">×</span>
+    <strong class="toc-title">文章目录</strong>
+           
+         </div>
+   <script type="text/javascript">
+  function showToc(){
+    var toc_article = document.getElementById("toc-article");
+    var show_toc_btn = document.getElementById("show-toc-btn");
+    toc_article.setAttribute("style","display:block");
+    show_toc_btn.setAttribute("style","display:none");
+    };
+  function showBtn(){
+    var toc_article = document.getElementById("toc-article");
+    var show_toc_btn = document.getElementById("show-toc-btn");
+    toc_article.setAttribute("style","display:none");
+    show_toc_btn.setAttribute("style","display:block");
+    };
+   </script>
+         
 <!-- 目录内容结束 -->
     
     <div class="article-entry" itemprop="articleBody">
       
-        <hr>
-<p>toc: true<br>title: “Java基础学习（二）”<br>date: 2017-05-05 20:55<br>comments: true<br>tags: </p>
-<h1 id="反射机制"><a href="#反射机制" class="headerlink" title="反射机制"></a>反射机制</h1><p>反射技术：其实就是动态加载一个指定的类，并获取该类中所有的内容。并将字节码文件中的内容都封装成对象，这样便于操作这些成员。简单说：反射技术可以对一个类进行解剖。</p>
-<p>反射的好处：大大增强了程序的扩展性。</p>
-<p>反射的基本步骤：</p>
+        <p>#Java基础之集合List-ArrayList、LinkedList、Vector的底层实现和区别</p>
 <ol>
-<li>获得Class对象，就是获得指定的名称的字节码文件对象</li>
-<li>实例化对象，获得类的属性、方法或者构造函数</li>
-<li>访问属性、调用方法、调用构造函数创建对象</li>
+<li>ArrayList底层实际是采用数组实现的（并且该数组的类型是Object类型的）</li>
+<li>如果jdk6,采用Array.copyOf()方法来生成一个新的数组，如果是jdk5，采用的是System.arraycopy()方法（当添加的数据量大于数组的长度的时候）</li>
+<li>List list = new ArrayList()时，底层会生成一个长度为10的数组来存放对象</li>
+<li>ArrayList、Vector底部都是采用数组实现的</li>
+<li>对于ArrayList，方法都不是同步的，对于Vector，大部分public方法都是同步的</li>
+<li>LinkedList采用双向循环列表</li>
+<li>对于ArrayList，查询速度很快，增加和删除（非最后一个节点）操作非常慢（本质上由数组的特性决定的）</li>
+<li>对于LinkedList，查询速度非常慢，增加和删除操作非常快（本质上是由双向循环列表决定的）</li>
 </ol>
+<p>参考博客：</p>
+<p><a href="http://blog.csdn.net/sundenskyqq/article/details/27630179" target="_blank" rel="noopener">http://blog.csdn.net/sundenskyqq/article/details/27630179</a></p>
 
       
 
@@ -285,7 +333,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=https://github.com/xp-git/carlyle/2018/04/27/分布式与集群 - 副本/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=https://github.com/xp-git/carlyle/2017/03/05/ArrayList 、 LinkedList 、 Vector 的底层实现和区别/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -299,9 +347,18 @@
   
 <nav id="article-nav">
   
+    <a href="/carlyle/2017/03/05/LinkedHashMap源码剖析/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          Java基础学习（一）
+        
+      </div>
+    </a>
   
-    <a href="/carlyle/2018/04/02/反射机制/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title"></div>
+  
+    <a href="/carlyle/2017/03/05/List/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Java基础学习（一）</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -321,6 +378,19 @@
         </div>
         
         
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    目录，不存在的…
+                    </div>
+                </span>
+            </div>
+        </div>
+        
     </div>
 </aside>
 
@@ -331,7 +401,7 @@
   
 
   
-  <div id="SOHUCS" sid="分布式与集群 - 副本" ></div> 
+  <div id="SOHUCS" sid="ArrayList 、 LinkedList 、 Vector 的底层实现和区别" ></div> 
 <script charset="utf-8" type="text/javascript" src="//changyan.sohu.com/upload/changyan.js" ></script>
 <script type="text/javascript">
     window.changyan.api.config({

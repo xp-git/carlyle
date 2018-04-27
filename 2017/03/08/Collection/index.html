@@ -6,19 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://github.com/xp-git/carlyle">
-  <title>Carlyle</title>
+  <title>Java基础学习（一） | Carlyle</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="toc: truelayout: posttitle: Java基础学习（一）date: 2017-03-05 20:55comments: truetags:  #Arraylist和HashMap如何扩容？ #负载因子有什么作用？ #如何保证读写进程安全？">
+  <meta name="description" content="####线性表，链表，哈希表是常用的数据结构，在进行Java开发时，JDK已经为我们提供了一系列相应的类来实现基本的数据结构。这些类均在java.util包中。本文试图通过简单的描述，向读者阐述各个类的作用以及如何正确使用这些类。  Collection&amp;lt;E&amp;gt;   是最基本的集合接口 继承的接口：Iterable 子接口：List、Set、Queue等  ##简介  一个Collection">
 <meta name="keywords" content="redis,前端,js,jquery,javascript,html5,Markdown语法,开发者,程序猿,程序媛,极客,编程,代码,开源,IT网站,Developer,Programmer,Coder,Geek,html,css,css3,用户体验,java,linux">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Carlyle">
-<meta property="og:url" content="https://github.com/xp-git/carlyle/2018/04/02/Arraylist和Hashmap如何扩容等/index.html">
+<meta property="og:title" content="Java基础学习（一）">
+<meta property="og:url" content="https://github.com/xp-git/carlyle/2017/03/08/Collection/index.html">
 <meta property="og:site_name" content="Carlyle">
-<meta property="og:description" content="toc: truelayout: posttitle: Java基础学习（一）date: 2017-03-05 20:55comments: truetags:  #Arraylist和HashMap如何扩容？ #负载因子有什么作用？ #如何保证读写进程安全？">
-<meta property="og:updated_time" content="2018-04-02T14:41:15.498Z">
+<meta property="og:description" content="####线性表，链表，哈希表是常用的数据结构，在进行Java开发时，JDK已经为我们提供了一系列相应的类来实现基本的数据结构。这些类均在java.util包中。本文试图通过简单的描述，向读者阐述各个类的作用以及如何正确使用这些类。  Collection&amp;lt;E&amp;gt;   是最基本的集合接口 继承的接口：Iterable 子接口：List、Set、Queue等  ##简介  一个Collection">
+<meta property="og:updated_time" content="2018-04-27T13:23:52.938Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Carlyle">
-<meta name="twitter:description" content="toc: truelayout: posttitle: Java基础学习（一）date: 2017-03-05 20:55comments: truetags:  #Arraylist和HashMap如何扩容？ #负载因子有什么作用？ #如何保证读写进程安全？">
+<meta name="twitter:title" content="Java基础学习（一）">
+<meta name="twitter:description" content="####线性表，链表，哈希表是常用的数据结构，在进行Java开发时，JDK已经为我们提供了一系列相应的类来实现基本的数据结构。这些类均在java.util包中。本文试图通过简单的描述，向读者阐述各个类的作用以及如何正确使用这些类。  Collection&amp;lt;E&amp;gt;   是最基本的集合接口 继承的接口：Iterable 子接口：List、Set、Queue等  ##简介  一个Collection">
   
     <link rel="alternative" href="/atom.xml" title="Carlyle" type="application/atom+xml">
   
@@ -176,20 +176,79 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-Arraylist和Hashmap如何扩容等" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-Collection" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Java基础学习（一）
+    </h1>
+  
+
+        
+        <a href="/carlyle/2017/03/08/Collection/" class="archive-article-date">
+  	<time datetime="2017-03-08T12:55:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-03-08</time>
+</a>
+        
+		
+				<span class="archive-article-date">
+					阅读量 <span id="busuanzi_value_page_pv"></span>
+				</span>
+		
+      </header>
+		
     
 
     <!-- 目录内容 -->
-   
+
+    <p class="show-toc-btn" id="show-toc-btn" onclick="showToc();" style="display:none">
+          <span class="btn-bg"></span>
+          <span class="btn-text">文章导航</span>
+          </p>
+  <div id="toc-article" class="toc-article">
+      <span id="toc-close" class="toc-close" title="隐藏导航" onclick="showBtn();">×</span>
+    <strong class="toc-title">文章目录</strong>
+           <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Collection-lt-E"><span class="toc-number">1.</span> <span class="toc-text">Collection&lt;E&gt; </span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#方法"><span class="toc-number">1.1.</span> <span class="toc-text">方法</span></a></li></ol></li></ol>
+         </div>
+   <script type="text/javascript">
+  function showToc(){
+    var toc_article = document.getElementById("toc-article");
+    var show_toc_btn = document.getElementById("show-toc-btn");
+    toc_article.setAttribute("style","display:block");
+    show_toc_btn.setAttribute("style","display:none");
+    };
+  function showBtn(){
+    var toc_article = document.getElementById("toc-article");
+    var show_toc_btn = document.getElementById("show-toc-btn");
+    toc_article.setAttribute("style","display:none");
+    show_toc_btn.setAttribute("style","display:block");
+    };
+   </script>
+         
 <!-- 目录内容结束 -->
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>toc: true<br>layout: post<br>title: Java基础学习（一）<br>date: 2017-03-05 20:55<br>comments: true<br>tags: </p>
-<p>#Arraylist和HashMap如何扩容？</p>
-<p>#负载因子有什么作用？</p>
-<p>#如何保证读写进程安全？</p>
+        <p>####线性表，链表，哈希表是常用的数据结构，在进行Java开发时，JDK已经为我们提供了一系列相应的类来实现基本的数据结构。这些类均在java.util包中。本文试图通过简单的描述，向读者阐述各个类的作用以及如何正确使用这些类。 </p>
+<h1 id="Collection-lt-E"><a href="#Collection-lt-E" class="headerlink" title="Collection&lt;E> "></a>Collection&lt;E><a name="Collection"> </a></h1><hr>
+<ul>
+<li>是最基本的集合接口</li>
+<li>继承的接口：Iterable</li>
+<li>子接口：List、Set、Queue等</li>
+</ul>
+<p>##简介</p>
+<ul>
+<li>一个Collection代表一组Object，即Collection的元素（Elements），一些Collection允许相同的元素而另一些不行。一些能排序而另一些不行。</li>
+<li>Java SDK不提供直接继承自Collection的类，Java SDK提供的类都是继承自Collection的“子接口”如List和Set。</li>
+</ul>
+<p>##如何遍历Collection中的每一个元素？</p>
+<ul>
+<li>不论Collection的实际类型如何，它都支持一个iterator()的方法，该方法返回一个迭代子，使用该迭代子即可逐一访问Collection中每一个元素，代码如下：</li>
+</ul>
+<figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">Iterator </span><span class="keyword">it </span>= collection.<span class="keyword">iterator(); </span>// 获得一个迭代子</span><br><span class="line">   <span class="meta">while</span>(<span class="keyword">it.hasNext())　</span>　</span><br><span class="line">   &#123;</span><br><span class="line">       Object obj = <span class="keyword">it.next(); </span>// 得到下一个元素</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+<h2 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h2><p><strong>retainAll(Collection&lt;? extends E> c)</strong>：保留，交运算<br><strong>addAll(Collection&lt;? extends E> c)</strong>：添加，并运算<br><strong>removeAll(Collection&lt;? extends E> c)</strong>：移除，减运算  </p>
 
       
 
@@ -279,7 +338,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=https://github.com/xp-git/carlyle/2018/04/02/Arraylist和Hashmap如何扩容等/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=https://github.com/xp-git/carlyle/2017/03/08/Collection/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -293,18 +352,18 @@
   
 <nav id="article-nav">
   
-    <a href="/carlyle/2018/04/02/Collection/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/carlyle/2017/03/08/Vector源码剖析/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          (no title)
+          Java基础学习（一）
         
       </div>
     </a>
   
   
-    <a href="/carlyle/2018/04/02/ArrayList源码剖析/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title"></div>
+    <a href="/carlyle/2017/03/06/LinkedList源码剖析/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">LinkedList源码</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -324,6 +383,19 @@
         </div>
         
         
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Collection-lt-E"><span class="toc-number">1.</span> <span class="toc-text">Collection&lt;E&gt; </span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#方法"><span class="toc-number">1.1.</span> <span class="toc-text">方法</span></a></li></ol></li></ol>
+                    </div>
+                </span>
+            </div>
+        </div>
+        
     </div>
 </aside>
 
@@ -334,7 +406,7 @@
   
 
   
-  <div id="SOHUCS" sid="Arraylist和Hashmap如何扩容等" ></div> 
+  <div id="SOHUCS" sid="Collection" ></div> 
 <script charset="utf-8" type="text/javascript" src="//changyan.sohu.com/upload/changyan.js" ></script>
 <script type="text/javascript">
     window.changyan.api.config({

@@ -6,21 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://github.com/xp-git/carlyle">
-  <title>Carlyle</title>
+  <title>“Java基础学习（二）” | Carlyle</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="toc: truelayout: posttitle: Java集合类date: 2017-02-05 20:55comments: truetags: JavaSE Java集合工具包位于Java.util包下，包含了很多常用的数据结构，如数组、链表、栈、队列、集合、哈希表等。学习Java集合框架下大致可以分为如下五个部分：List列表、Set集合、Map映射、迭代器（Iterator、Enum">
+  <meta name="description" content="##反射机制反射技术：其实就是动态加载一个指定的类，并获取该类中所有的内容。并将字节码文件中的内容都封装成对象，这样便于操作这些成员。简单说：反射技术可以对一个类进行解剖。 反射的好处：大大增强了程序的扩展性。 反射的基本步骤：  获得Class对象，就是获得指定的名称的字节码文件对象 实例化对象，获得类的属性、方法或者构造函数 访问属性、调用方法、调用构造函数创建对象">
 <meta name="keywords" content="redis,前端,js,jquery,javascript,html5,Markdown语法,开发者,程序猿,程序媛,极客,编程,代码,开源,IT网站,Developer,Programmer,Coder,Geek,html,css,css3,用户体验,java,linux">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Carlyle">
-<meta property="og:url" content="https://github.com/xp-git/carlyle/2018/04/02/Java集合框架/index.html">
+<meta property="og:title" content="“Java基础学习（二）”">
+<meta property="og:url" content="https://github.com/xp-git/carlyle/2017/05/05/反射机制/index.html">
 <meta property="og:site_name" content="Carlyle">
-<meta property="og:description" content="toc: truelayout: posttitle: Java集合类date: 2017-02-05 20:55comments: truetags: JavaSE Java集合工具包位于Java.util包下，包含了很多常用的数据结构，如数组、链表、栈、队列、集合、哈希表等。学习Java集合框架下大致可以分为如下五个部分：List列表、Set集合、Map映射、迭代器（Iterator、Enum">
-<meta property="og:image" content="http://img.blog.csdn.net/20140628144205625">
-<meta property="og:updated_time" content="2018-04-27T12:42:58.109Z">
+<meta property="og:description" content="##反射机制反射技术：其实就是动态加载一个指定的类，并获取该类中所有的内容。并将字节码文件中的内容都封装成对象，这样便于操作这些成员。简单说：反射技术可以对一个类进行解剖。 反射的好处：大大增强了程序的扩展性。 反射的基本步骤：  获得Class对象，就是获得指定的名称的字节码文件对象 实例化对象，获得类的属性、方法或者构造函数 访问属性、调用方法、调用构造函数创建对象">
+<meta property="og:updated_time" content="2018-04-27T13:22:59.570Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Carlyle">
-<meta name="twitter:description" content="toc: truelayout: posttitle: Java集合类date: 2017-02-05 20:55comments: truetags: JavaSE Java集合工具包位于Java.util包下，包含了很多常用的数据结构，如数组、链表、栈、队列、集合、哈希表等。学习Java集合框架下大致可以分为如下五个部分：List列表、Set集合、Map映射、迭代器（Iterator、Enum">
-<meta name="twitter:image" content="http://img.blog.csdn.net/20140628144205625">
+<meta name="twitter:title" content="“Java基础学习（二）”">
+<meta name="twitter:description" content="##反射机制反射技术：其实就是动态加载一个指定的类，并获取该类中所有的内容。并将字节码文件中的内容都封装成对象，这样便于操作这些成员。简单说：反射技术可以对一个类进行解剖。 反射的好处：大大增强了程序的扩展性。 反射的基本步骤：  获得Class对象，就是获得指定的名称的字节码文件对象 实例化对象，获得类的属性、方法或者构造函数 访问属性、调用方法、调用构造函数创建对象">
   
     <link rel="alternative" href="/atom.xml" title="Carlyle" type="application/atom+xml">
   
@@ -178,27 +176,69 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-Java集合框架" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-反射机制" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      “Java基础学习（二）”
+    </h1>
+  
+
+        
+        <a href="/carlyle/2017/05/05/反射机制/" class="archive-article-date">
+  	<time datetime="2017-05-05T12:55:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-05-05</time>
+</a>
+        
+		
+				<span class="archive-article-date">
+					阅读量 <span id="busuanzi_value_page_pv"></span>
+				</span>
+		
+      </header>
+		
     
 
     <!-- 目录内容 -->
-   
+
+    <p class="show-toc-btn" id="show-toc-btn" onclick="showToc();" style="display:none">
+          <span class="btn-bg"></span>
+          <span class="btn-text">文章导航</span>
+          </p>
+  <div id="toc-article" class="toc-article">
+      <span id="toc-close" class="toc-close" title="隐藏导航" onclick="showBtn();">×</span>
+    <strong class="toc-title">文章目录</strong>
+           
+         </div>
+   <script type="text/javascript">
+  function showToc(){
+    var toc_article = document.getElementById("toc-article");
+    var show_toc_btn = document.getElementById("show-toc-btn");
+    toc_article.setAttribute("style","display:block");
+    show_toc_btn.setAttribute("style","display:none");
+    };
+  function showBtn(){
+    var toc_article = document.getElementById("toc-article");
+    var show_toc_btn = document.getElementById("show-toc-btn");
+    toc_article.setAttribute("style","display:none");
+    show_toc_btn.setAttribute("style","display:block");
+    };
+   </script>
+         
 <!-- 目录内容结束 -->
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>toc: true<br>layout: post<br>title: Java集合类<br>date: 2017-02-05 20:55<br>comments: true<br>tags: JavaSE</p>
-<p>Java集合工具包位于Java.util包下，包含了很多常用的数据结构，如数组、链表、栈、队列、集合、哈希表等。学习Java集合框架下大致可以分为如下五个部分：List列表、Set集合、Map映射、迭代器（Iterator、Enumeration）、工具类（Arrays、Collections）。</p>
-<p>Java集合类的整体框架如下：</p>
-<p><img src="http://img.blog.csdn.net/20140628144205625" alt=""></p>
-<p>从上图中可以看出，集合类主要分为两大类：Collection和Map。</p>
-<p>Collection是List、Set等集合高度抽象出来的接口，它包含了这些集合的基本操作，它主要又分为两大部分：List和Set。</p>
-<p> List接口通常表示一个列表（数组、队列、链表、栈等），其中的元素可以重复，常用实现类为ArrayList和LinkedList，另外还有不常用的Vector。另外，LinkedList还是实现了Queue接口，因此也可以作为队列使用。</p>
-<p> Set接口通常表示一个集合，其中的元素不允许重复（通过hashcode和equals函数保证），常用实现类有HashSet和TreeSet，HashSet是通过Map中的HashMap实现的，而TreeSet是通过Map中的TreeMap实现的。另外，TreeSet还实现了SortedSet接口，因此是有序的集合（集合中的元素要实现Comparable接口，并覆写Compartor函数才行）。<br>我们看到，抽象类AbstractCollection、AbstractList和AbstractSet分别实现了Collection、List和Set接口，这就是在Java集合框架中用的很多的适配器设计模式，用这些抽象类去实现接口，在抽象类中实现接口中的若干或全部方法，这样下面的一些类只需直接继承该抽象类，并实现自己需要的方法即可，而不用实现接口中的全部抽象方法。</p>
-<p>Map是一个映射接口，其中的每个元素都是一个key-value键值对，同样抽象类AbstractMap通过适配器模式实现了Map接口中的大部分函数，TreeMap、HashMap、WeakHashMap等实现类都通过继承AbstractMap来实现，另外，不常用的HashTable直接实现了Map接口，它和Vector都是JDK1.0就引入的集合类。</p>
-<p>Iterator是遍历集合的迭代器（不能遍历Map，只用来遍历Collection），Collection的实现类都实现了iterator()函数，它返回一个Iterator对象，用来遍历集合，ListIterator则专门用来遍历List。而Enumeration则是JDK1.0时引入的，作用与Iterator相同，但它的功能比Iterator要少，它只能再Hashtable、Vector和Stack中使用。</p>
-<p> Arrays和Collections是用来操作数组、集合的两个工具类，例如在ArrayList和Vector中大量调用了Arrays.Copyof()方法，而Collections中有很多静态方法可以返回各集合类的synchronized版本，即线程安全的版本，当然了，如果要用线程安全的结合类，首选Concurrent并发包下的对应的集合类。</p>
+        <p>##反射机制<br>反射技术：其实就是动态加载一个指定的类，并获取该类中所有的内容。并将字节码文件中的内容都封装成对象，这样便于操作这些成员。简单说：反射技术可以对一个类进行解剖。</p>
+<p>反射的好处：大大增强了程序的扩展性。</p>
+<p>反射的基本步骤：</p>
+<ol>
+<li>获得Class对象，就是获得指定的名称的字节码文件对象</li>
+<li>实例化对象，获得类的属性、方法或者构造函数</li>
+<li>访问属性、调用方法、调用构造函数创建对象</li>
+</ol>
 
       
 
@@ -288,7 +328,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=https://github.com/xp-git/carlyle/2018/04/02/Java集合框架/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=https://github.com/xp-git/carlyle/2017/05/05/反射机制/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -302,18 +342,18 @@
   
 <nav id="article-nav">
   
-    <a href="/carlyle/2018/04/02/反射机制/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/carlyle/2018/02/01/Redis学习1/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          (no title)
+          Redis的基本认识（一）
         
       </div>
     </a>
   
   
-    <a href="/carlyle/2018/04/02/Hashmap的hashcode的作用等/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title"></div>
+    <a href="/carlyle/2017/03/12/Set/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Java基础学习（一）</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -333,6 +373,19 @@
         </div>
         
         
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    目录，不存在的…
+                    </div>
+                </span>
+            </div>
+        </div>
+        
     </div>
 </aside>
 
@@ -343,7 +396,7 @@
   
 
   
-  <div id="SOHUCS" sid="Java集合框架" ></div> 
+  <div id="SOHUCS" sid="反射机制" ></div> 
 <script charset="utf-8" type="text/javascript" src="//changyan.sohu.com/upload/changyan.js" ></script>
 <script type="text/javascript">
     window.changyan.api.config({

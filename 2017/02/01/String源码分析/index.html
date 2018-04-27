@@ -8,17 +8,17 @@
   <link rel="dns-prefetch" href="https://github.com/xp-git/carlyle">
   <title>Java基础学习（一） | Carlyle</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="从一段代码说起： 12345public void stringTest()&amp;#123;    String a = &quot;a&quot;+&quot;b&quot;+1;    String b = &quot;ab1&quot;;    System.out.println(a == b);&amp;#125; 大家猜一猜结果如何？如果你的结论是true。好吧，再来一段代码： 12345public void stringTest()&amp;#123;">
+  <meta name="description" content="#String源码分析  从一段代码说起： 12345public void stringTest()&amp;#123;    String a = &quot;a&quot;+&quot;b&quot;+1;    String b = &quot;ab1&quot;;    System.out.println(a == b);&amp;#125; 大家猜一猜结果如何？如果你的结论是true。好吧，再来一段代码： 12345public void stringTes">
 <meta name="keywords" content="redis,前端,js,jquery,javascript,html5,Markdown语法,开发者,程序猿,程序媛,极客,编程,代码,开源,IT网站,Developer,Programmer,Coder,Geek,html,css,css3,用户体验,java,linux">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Java基础学习（一）">
 <meta property="og:url" content="https://github.com/xp-git/carlyle/2017/02/01/String源码分析/index.html">
 <meta property="og:site_name" content="Carlyle">
-<meta property="og:description" content="从一段代码说起： 12345public void stringTest()&amp;#123;    String a = &quot;a&quot;+&quot;b&quot;+1;    String b = &quot;ab1&quot;;    System.out.println(a == b);&amp;#125; 大家猜一猜结果如何？如果你的结论是true。好吧，再来一段代码： 12345public void stringTest()&amp;#123;">
-<meta property="og:updated_time" content="2018-04-02T14:45:50.914Z">
+<meta property="og:description" content="#String源码分析  从一段代码说起： 12345public void stringTest()&amp;#123;    String a = &quot;a&quot;+&quot;b&quot;+1;    String b = &quot;ab1&quot;;    System.out.println(a == b);&amp;#125; 大家猜一猜结果如何？如果你的结论是true。好吧，再来一段代码： 12345public void stringTes">
+<meta property="og:updated_time" content="2018-04-27T13:25:58.710Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Java基础学习（一）">
-<meta name="twitter:description" content="从一段代码说起： 12345public void stringTest()&amp;#123;    String a = &quot;a&quot;+&quot;b&quot;+1;    String b = &quot;ab1&quot;;    System.out.println(a == b);&amp;#125; 大家猜一猜结果如何？如果你的结论是true。好吧，再来一段代码： 12345public void stringTest()&amp;#123;">
+<meta name="twitter:description" content="#String源码分析  从一段代码说起： 12345public void stringTest()&amp;#123;    String a = &quot;a&quot;+&quot;b&quot;+1;    String b = &quot;ab1&quot;;    System.out.println(a == b);&amp;#125; 大家猜一猜结果如何？如果你的结论是true。好吧，再来一段代码： 12345public void stringTes">
   
     <link rel="alternative" href="/atom.xml" title="Carlyle" type="application/atom+xml">
   
@@ -231,7 +231,9 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>从一段代码说起：</p>
+        <p>#String源码分析</p>
+<hr>
+<p>从一段代码说起：</p>
 <figure class="highlight arduino"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> stringTest()&#123;</span><br><span class="line">    <span class="keyword">String</span> a = <span class="string">"a"</span>+<span class="string">"b"</span>+<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">String</span> b = <span class="string">"ab1"</span>;</span><br><span class="line">    System.out.<span class="built_in">println</span>(a == b);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>大家猜一猜结果如何？如果你的结论是true。好吧，再来一段代码：</p>
 <figure class="highlight arduino"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> stringTest()&#123;</span><br><span class="line">    <span class="keyword">String</span> a = <span class="keyword">new</span> <span class="keyword">String</span>(<span class="string">"ab1"</span>);</span><br><span class="line">    <span class="keyword">String</span> b = <span class="string">"ab1"</span>;</span><br><span class="line">    System.out.<span class="built_in">println</span>(a == b);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -386,11 +388,11 @@
   
 <nav id="article-nav">
   
-    <a href="/carlyle/2017/03/01/Java 的垃圾回收机制/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/carlyle/2017/02/05/Java集合框架/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          Java基础学习（一）
+          Java集合类
         
       </div>
     </a>
