@@ -177,6 +177,94 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-Queue" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/carlyle/2017/03/11/Queue/">Java基础学习（一）</a>
+    </h1>
+  
+
+        
+        <a href="/carlyle/2017/03/11/Queue/" class="archive-article-date">
+  	<time datetime="2017-03-11T12:55:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-03-11</time>
+</a>
+        
+		
+      </header>
+		
+    
+
+    <!-- 目录内容 -->
+   
+<!-- 目录内容结束 -->
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <ul>
+<li>是一个泛型接口</li>
+<li>父接口：Collection</li>
+<li>子接口：Deque</li>
+</ul>
+<h2 id="简介"><a href="#简介" class="headerlink" title="##简介"></a>##简介</h2><ul>
+<li>是个队列</li>
+<li>插入、提取、检查操作都存在两种形式，一种在操作失败后返回特殊值，一种抛出异常</li>
+</ul>
+<h2 id="方法"><a href="#方法" class="headerlink" title="##方法"></a>##方法</h2><ol>
+<li>boolean add(E e)和 boolean offer(E e)添加元素<br>失败时，add()抛出异常，offer()返回false</li>
+<li>E element()和E peek()获取但不移除<br>失败时，element抛出异常，peek()返回null</li>
+<li>E remove()和E poll()获取并移除<br>失败时，remove()抛出异常，poll()返回null</li>
+</ol>
+<h2 id="子类介绍"><a href="#子类介绍" class="headerlink" title="##子类介绍"></a>##子类介绍</h2><p>###Deque</p>
+<ul>
+<li>双端队列</li>
+<li>可以实现队列。也可以用作栈</li>
+</ul>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/carlyle/2017/03/11/Queue/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-Linkedlist" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -234,102 +322,6 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/carlyle/2017/03/05/Linkedlist/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-List" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/carlyle/2017/03/05/List/">Java基础学习（一）</a>
-    </h1>
-  
-
-        
-        <a href="/carlyle/2017/03/05/List/" class="archive-article-date">
-  	<time datetime="2017-03-05T02:55:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-03-05</time>
-</a>
-        
-		
-      </header>
-		
-    
-
-    <!-- 目录内容 -->
-   
-<!-- 目录内容结束 -->
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <ul>
-<li>是一个接口</li>
-<li>继承的接口：Collection</li>
-<li>间接继承的接口：Iterable</li>
-<li>实现类：ArrayList、LinkedList、Vector等</li>
-</ul>
-<h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h3><ul>
-<li>List是有序的<strong>Collection</strong><ul>
-<li>可以对每个元素的插入位置进行精准控制</li>
-<li>可以根据索引访问元素</li>
-</ul>
-</li>
-<li>允许重复元素</li>
-<li>有自己的迭代器 ListIterator</li>
-<li>如果元素包含自身，equals()和hashCode()不再是良定义的</li>
-</ul>
-<h3 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h3><p><strong>boolean add(E e)</strong>: 添加到末尾<br><strong>void add(int index, E e)</strong>: 添加到指定位置  </p>
-<p><strong>E set(int index, E e)</strong>: 设置指定位置的元素,返回一个E<br><strong>get(int index)</strong>: 获得指定位置的元素  </p>
-<p><strong>Iterator iterator()</strong><br><strong>ListIterator listIterator()</strong><br><strong>ListIterator listIterator(int index)</strong>  </p>
-<p><strong>int indexOf(E e)</strong><br><strong>int lastIndexOf(E e)</strong></p>
-<p><strong>List<e> subList(int fromIndex, int toIndex)</e></strong></p>
-<h3 id="子类介绍"><a href="#子类介绍" class="headerlink" title="子类介绍"></a>子类介绍</h3><ol>
-<li>ArrayList是一个可改变大小的数组，当更多的元素加入到ArrayList中时，其大小将会动态的增长。内部的元素可以直接通过get与set方法进行访问，因为ArrayList本质上就是一个数组</li>
-<li>LinkedList 是一个双链表,在添加和删除元素时具有比ArrayList更好的性能.但在get与set方面弱于ArrayList.当然,这些对比都是指数据量很大或者操作很频繁的情况下的对比,如果数据和运算量很小,那么对比将失去意义。<br>LinkedList还实现了Queue接口，该接口比List提供了更多的方法，包括offer(),peek(),poll等</li>
-<li>Vector 和ArrayList类似,但属于强同步类。如果你的程序本身是线程安全的(thread-safe,没有在多个线程之间共享同一个集合/对象),那么使用ArrayList是更好的选择。<br>Vector和ArrayList在更多元素添加进来时会请求更大的空间。Vector每次请求其大小的双倍空间，而ArrayList每次对size增长50%.</li>
-</ol>
-<p>​    </p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/carlyle/2017/03/05/List/">展开全文 >></a>
         </p>
       
 
@@ -482,23 +474,15 @@ MathJax.Hub.Queue(function() {
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Java基础</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">I</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">设计架构</a>
+                <a href="javascript:void(0)" class="js-tag color2">Java基础</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Markdown语法</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">You</a>
+                <a href="javascript:void(0)" class="js-tag color1">redis</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -506,7 +490,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">redis</a>
+                <a href="javascript:void(0)" class="js-tag color4">You</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Markdown语法</a>
               </li>
             
             <div class="clearfix"></div>
