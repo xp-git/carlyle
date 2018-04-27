@@ -8,17 +8,17 @@
   <link rel="dns-prefetch" href="https://github.com/xp-git/carlyle">
   <title>Java基础学习（一） | Carlyle</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="####线性表，链表，哈希表是常用的数据结构，在进行Java开发时，JDK已经为我们提供了一系列相应的类来实现基本的数据结构。这些类均在java.util包中。本文试图通过简单的描述，向读者阐述各个类的作用以及如何正确使用这些类。  Collection&amp;lt;E&amp;gt;   是最基本的集合接口 继承的接口：Iterable 子接口：List、Set、Queue等  ##简介  一个Collection">
+  <meta name="description" content="####线性表，链表，哈希表是常用的数据结构，在进行Java开发时，JDK已经为我们提供了一系列相应的类来实现基本的数据结构。这些类均在java.util包中。本文试图通过简单的描述，向读者阐述各个类的作用以及如何正确使用这些类。  Collection&amp;lt;E&amp;gt;   是最基本的集合接口 继承的接口：Iterable 子接口：List、Set、Queue等  简介 一个Collection代表一">
 <meta name="keywords" content="redis,前端,js,jquery,javascript,html5,Markdown语法,开发者,程序猿,程序媛,极客,编程,代码,开源,IT网站,Developer,Programmer,Coder,Geek,html,css,css3,用户体验,java,linux">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Java基础学习（一）">
 <meta property="og:url" content="https://github.com/xp-git/carlyle/2017/03/08/Collection/index.html">
 <meta property="og:site_name" content="Carlyle">
-<meta property="og:description" content="####线性表，链表，哈希表是常用的数据结构，在进行Java开发时，JDK已经为我们提供了一系列相应的类来实现基本的数据结构。这些类均在java.util包中。本文试图通过简单的描述，向读者阐述各个类的作用以及如何正确使用这些类。  Collection&amp;lt;E&amp;gt;   是最基本的集合接口 继承的接口：Iterable 子接口：List、Set、Queue等  ##简介  一个Collection">
-<meta property="og:updated_time" content="2018-04-27T13:23:52.938Z">
+<meta property="og:description" content="####线性表，链表，哈希表是常用的数据结构，在进行Java开发时，JDK已经为我们提供了一系列相应的类来实现基本的数据结构。这些类均在java.util包中。本文试图通过简单的描述，向读者阐述各个类的作用以及如何正确使用这些类。  Collection&amp;lt;E&amp;gt;   是最基本的集合接口 继承的接口：Iterable 子接口：List、Set、Queue等  简介 一个Collection代表一">
+<meta property="og:updated_time" content="2018-04-27T13:55:17.611Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Java基础学习（一）">
-<meta name="twitter:description" content="####线性表，链表，哈希表是常用的数据结构，在进行Java开发时，JDK已经为我们提供了一系列相应的类来实现基本的数据结构。这些类均在java.util包中。本文试图通过简单的描述，向读者阐述各个类的作用以及如何正确使用这些类。  Collection&amp;lt;E&amp;gt;   是最基本的集合接口 继承的接口：Iterable 子接口：List、Set、Queue等  ##简介  一个Collection">
+<meta name="twitter:description" content="####线性表，链表，哈希表是常用的数据结构，在进行Java开发时，JDK已经为我们提供了一系列相应的类来实现基本的数据结构。这些类均在java.util包中。本文试图通过简单的描述，向读者阐述各个类的作用以及如何正确使用这些类。  Collection&amp;lt;E&amp;gt;   是最基本的集合接口 继承的接口：Iterable 子接口：List、Set、Queue等  简介 一个Collection代表一">
   
     <link rel="alternative" href="/atom.xml" title="Carlyle" type="application/atom+xml">
   
@@ -210,7 +210,7 @@
   <div id="toc-article" class="toc-article">
       <span id="toc-close" class="toc-close" title="隐藏导航" onclick="showBtn();">×</span>
     <strong class="toc-title">文章目录</strong>
-           <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Collection-lt-E"><span class="toc-number">1.</span> <span class="toc-text">Collection&lt;E&gt; </span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#方法"><span class="toc-number">1.1.</span> <span class="toc-text">方法</span></a></li></ol></li></ol>
+           <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Collection-lt-E"><span class="toc-number">1.</span> <span class="toc-text">Collection&lt;E&gt; </span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#简介"><span class="toc-number">1.1.</span> <span class="toc-text">简介</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#如何遍历Collection中的每一个元素？"><span class="toc-number">1.2.</span> <span class="toc-text">如何遍历Collection中的每一个元素？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#方法"><span class="toc-number">1.3.</span> <span class="toc-text">方法</span></a></li></ol></li></ol>
          </div>
    <script type="text/javascript">
   function showToc(){
@@ -238,13 +238,11 @@
 <li>继承的接口：Iterable</li>
 <li>子接口：List、Set、Queue等</li>
 </ul>
-<p>##简介</p>
-<ul>
+<h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><ul>
 <li>一个Collection代表一组Object，即Collection的元素（Elements），一些Collection允许相同的元素而另一些不行。一些能排序而另一些不行。</li>
 <li>Java SDK不提供直接继承自Collection的类，Java SDK提供的类都是继承自Collection的“子接口”如List和Set。</li>
 </ul>
-<p>##如何遍历Collection中的每一个元素？</p>
-<ul>
+<h2 id="如何遍历Collection中的每一个元素？"><a href="#如何遍历Collection中的每一个元素？" class="headerlink" title="如何遍历Collection中的每一个元素？"></a>如何遍历Collection中的每一个元素？</h2><ul>
 <li>不论Collection的实际类型如何，它都支持一个iterator()的方法，该方法返回一个迭代子，使用该迭代子即可逐一访问Collection中每一个元素，代码如下：</li>
 </ul>
 <figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">Iterator </span><span class="keyword">it </span>= collection.<span class="keyword">iterator(); </span>// 获得一个迭代子</span><br><span class="line">   <span class="meta">while</span>(<span class="keyword">it.hasNext())　</span>　</span><br><span class="line">   &#123;</span><br><span class="line">       Object obj = <span class="keyword">it.next(); </span>// 得到下一个元素</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
@@ -352,7 +350,7 @@
   
 <nav id="article-nav">
   
-    <a href="/carlyle/2017/03/08/Vector源码剖析/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/carlyle/2017/03/09/Hashmap的hashcode的作用等/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
@@ -362,8 +360,8 @@
     </a>
   
   
-    <a href="/carlyle/2017/03/06/LinkedList源码剖析/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">LinkedList源码</div>
+    <a href="/carlyle/2017/03/08/Vector源码剖析/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Java基础学习（一）</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -390,7 +388,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Collection-lt-E"><span class="toc-number">1.</span> <span class="toc-text">Collection&lt;E&gt; </span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#方法"><span class="toc-number">1.1.</span> <span class="toc-text">方法</span></a></li></ol></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Collection-lt-E"><span class="toc-number">1.</span> <span class="toc-text">Collection&lt;E&gt; </span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#简介"><span class="toc-number">1.1.</span> <span class="toc-text">简介</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#如何遍历Collection中的每一个元素？"><span class="toc-number">1.2.</span> <span class="toc-text">如何遍历Collection中的每一个元素？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#方法"><span class="toc-number">1.3.</span> <span class="toc-text">方法</span></a></li></ol></li></ol>
                     </div>
                 </span>
             </div>
@@ -542,11 +540,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Java基础</a>
+                <a href="javascript:void(0)" class="js-tag color2">I</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">I</a>
+                <a href="javascript:void(0)" class="js-tag color2">Java基础</a>
               </li>
              
               <li class="article-tag-list-item">

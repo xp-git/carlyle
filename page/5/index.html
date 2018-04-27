@@ -177,20 +177,20 @@
           <div id="js-content" class="content-ll">
             
   
-    <article id="post-Redis学习1" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-Java 的垃圾回收机制" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/carlyle/2018/02/01/Redis学习1/">Redis的基本认识（一）</a>
+      <a class="article-title" href="/carlyle/2017/03/01/Java 的垃圾回收机制/">Java基础学习（一）</a>
     </h1>
   
 
         
-        <a href="/carlyle/2018/02/01/Redis学习1/" class="archive-article-date">
-  	<time datetime="2018-02-01T02:55:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-02-01</time>
+        <a href="/carlyle/2017/03/01/Java 的垃圾回收机制/" class="archive-article-date">
+  	<time datetime="2017-03-01T02:55:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-03-01</time>
 </a>
         
 		
@@ -204,21 +204,19 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="Redis的基本认识（一）"><a href="#Redis的基本认识（一）" class="headerlink" title="Redis的基本认识（一）"></a>Redis的基本认识（一）</h1><h2 id="redis的五种数据类型"><a href="#redis的五种数据类型" class="headerlink" title="redis的五种数据类型"></a>redis的五种数据类型</h2><p><strong>1.String 字符串</strong>:</p>
-<ul>
-<li><p>string是redis最基本的类型，你可以理解成与Memcached一模一样的类型，一个key对应一个value。</p>
-</li>
-<li><p>string类型是二进制安全的。意思是redis的string可以包含任何数据。比如jpg图片或者序列化的对象 。</p>
-</li>
-<li>string类型是Redis最基本的数据类型，一个键最大能存储512MB。 </li>
-</ul>
-<p><strong>实列</strong></p>
-<p> 存数据：set key value</p>
-<p> 取数据： get key</p>
-<p> 查看数据类型：type key</p>
-        
-          <a class="article-more-a" href="/carlyle/2018/02/01/Redis学习1/#more">more >></a>
-        
+        <p>Java 的垃圾回收机制</p>
+<p>Java 的垃圾回收器是作为一个单独的低级别的线程运行，在补课预知的情况下对内存堆中已经死亡或者长时间没有使用的对象进行清楚和回收。程序员不能实时的调用垃圾回收期对某个对象或所有对象进行垃圾回收。但是程序员可以手动去执行System.gc()，通知GC去运行，单Java不一定保证GC一定会运行。</p>
+<p>where 在哪里回收，内存。</p>
+<p>when 什么时候被回收的。</p>
+<p>这里涉及到两种做法：引用计数法和可达性分析算法。这里还设计到四中引用方式：强引用，软引用，弱引用和虚引用。其引用强度越来越低，意味着越弱的对象越容易被垃圾回收。</p>
+<p>how 对象如何被回收的？4中垃圾回收算法。</p>
+<p>2 Jvm 的内存模型。</p>
+<p>方法区:虚拟机栈，本地方法栈。</p>
+<p>对象：heap 堆。</p>
+<p>3 JVM的4中引用方式和使用场景</p>
+<p>⑴强引用（StrongReference）<br>强引用是使用最普遍的引用。如果一个对象具有强引用，那垃圾回收器绝<br>不会回收它。当内存空间不足，Java 虚拟机宁愿抛出 OutOfMemoryError 错误，<br>使程序异常终止，也不会靠随意回收具有强引用的对象来解决内存不足的问<br>题。 ps：强引用其实也就是我们平时 A a = new A()这个意思。</p>
+<p>⑵软引用（SoftReference）<br>如果一个对象只具有软引用，则内存空间足够，垃圾回收器就不会回收它；<br>如果内存空间不足了，就会回收这些对象的内存。只要垃圾回收器没有回收它，<br>该对象就可以被程序使用。软引用可用来实现内存敏感的高速缓存（下文给出<br>示例）。<br>软引用可以和一个引用队列（ReferenceQueue）联合使用，如果软引用所<br>引用的对象被垃圾回收器回收，Java 虚拟机就会把这个软引用加入到与之关联<br>的引用队列中。<br>示例：实现学生信息查询操作时有两套数据操作的方案。<br>一、将得到的信息存放在内存中，后续查询则直接读取内存信息（优点：<br>读取速度快；缺点：内存空间一直被占，若资源访问量不高，则浪费内存空间）。<br>二、每次查询均从数据库读取，然后填充到 TO 返回。（优点：内存空间<br>将被 GC 回收，不会一直被占用；缺点：在 GC 发生之前已有的 TO 依然存在，<br>但还是执行了一次数据库查询，浪费 IO）。<br>可以通过软引用来解决。<br>⑶弱引用（WeakReference）<br>弱引用与软引用的区别在于：只具有弱引用的对象拥有更短暂的生命周期。<br>在垃圾回收器线程扫描它所管辖的内存区域的过程中，一旦发现了只具有弱引<br>用的对象，不管当前内存空间足够与否，都会回收它的内存。不过，由于垃圾<br>回收器是一个优先级很低的线程，因此不一定会很快发现那些只具有弱引用的<br>对象。<br>弱引用可以和一个引用队列（ReferenceQueue）联合使用，如果弱引用所<br>引用的对象被垃圾回收，Java 虚拟机就会把这个弱引用加入到与之关联的引用<br>队列中。<br>⑷虚引用（PhantomReference）<br>“虚引用”顾名思义，就是形同虚设，与其他几种引用都不同，虚引用并不会<br>决定对象的生命周期。如果一个对象仅持有虚引用，那么它就和没有任何引用<br>微信公众号：内推军。每天都会分享大量的求职内推信息，<br>欢迎关注！<br>）<br>4<br>一样，在任何时候都可能被垃圾回收器回收。<br>虚引用主要用来跟踪对象被垃圾回收器回收的活动。虚引用与软引用和弱<br>引用的一个区别在于：虚引用必须和引用队列 （ReferenceQueue）联合使用。<br>当垃圾回收器准备回收一个对象时，如果发现它还有虚引用，就会在回收对象<br>的内存之前，把这个虚引用加入到与之关联的引用队列中。</p>
+
       
 
       
@@ -231,7 +229,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">redis</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Java基础</a>
         		</li>
       		
 		</ul>
@@ -241,7 +239,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/carlyle/2018/02/01/Redis学习1/">展开全文 >></a>
+          <a class="article-more-a" href="/carlyle/2017/03/01/Java 的垃圾回收机制/">展开全文 >></a>
         </p>
       
 
@@ -271,20 +269,20 @@
 
 
   
-    <article id="post-反射机制" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-Java集合框架" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/carlyle/2017/05/05/反射机制/">“Java基础学习（二）”</a>
+      <a class="article-title" href="/carlyle/2017/02/05/Java集合框架/">Java集合类</a>
     </h1>
   
 
         
-        <a href="/carlyle/2017/05/05/反射机制/" class="archive-article-date">
-  	<time datetime="2017-05-05T12:55:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-05-05</time>
+        <a href="/carlyle/2017/02/05/Java集合框架/" class="archive-article-date">
+  	<time datetime="2017-02-05T12:55:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-02-05</time>
 </a>
         
 		
@@ -298,14 +296,150 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>##反射机制<br>反射技术：其实就是动态加载一个指定的类，并获取该类中所有的内容。并将字节码文件中的内容都封装成对象，这样便于操作这些成员。简单说：反射技术可以对一个类进行解剖。</p>
-<p>反射的好处：大大增强了程序的扩展性。</p>
-<p>反射的基本步骤：</p>
-<ol>
-<li>获得Class对象，就是获得指定的名称的字节码文件对象</li>
-<li>实例化对象，获得类的属性、方法或者构造函数</li>
-<li>访问属性、调用方法、调用构造函数创建对象</li>
-</ol>
+        <p>Java集合工具包位于Java.util包下，包含了很多常用的数据结构，如数组、链表、栈、队列、集合、哈希表等。学习Java集合框架下大致可以分为如下五个部分：List列表、Set集合、Map映射、迭代器（Iterator、Enumeration）、工具类（Arrays、Collections）。</p>
+<p>Java集合类的整体框架如下：</p>
+<p><img src="http://img.blog.csdn.net/20140628144205625" alt=""></p>
+<p>从上图中可以看出，集合类主要分为两大类：Collection和Map。</p>
+<p>Collection是List、Set等集合高度抽象出来的接口，它包含了这些集合的基本操作，它主要又分为两大部分：List和Set。</p>
+<p> List接口通常表示一个列表（数组、队列、链表、栈等），其中的元素可以重复，常用实现类为ArrayList和LinkedList，另外还有不常用的Vector。另外，LinkedList还是实现了Queue接口，因此也可以作为队列使用。</p>
+<p> Set接口通常表示一个集合，其中的元素不允许重复（通过hashcode和equals函数保证），常用实现类有HashSet和TreeSet，HashSet是通过Map中的HashMap实现的，而TreeSet是通过Map中的TreeMap实现的。另外，TreeSet还实现了SortedSet接口，因此是有序的集合（集合中的元素要实现Comparable接口，并覆写Compartor函数才行）。<br>我们看到，抽象类AbstractCollection、AbstractList和AbstractSet分别实现了Collection、List和Set接口，这就是在Java集合框架中用的很多的适配器设计模式，用这些抽象类去实现接口，在抽象类中实现接口中的若干或全部方法，这样下面的一些类只需直接继承该抽象类，并实现自己需要的方法即可，而不用实现接口中的全部抽象方法。</p>
+<p>Map是一个映射接口，其中的每个元素都是一个key-value键值对，同样抽象类AbstractMap通过适配器模式实现了Map接口中的大部分函数，TreeMap、HashMap、WeakHashMap等实现类都通过继承AbstractMap来实现，另外，不常用的HashTable直接实现了Map接口，它和Vector都是JDK1.0就引入的集合类。</p>
+<p>Iterator是遍历集合的迭代器（不能遍历Map，只用来遍历Collection），Collection的实现类都实现了iterator()函数，它返回一个Iterator对象，用来遍历集合，ListIterator则专门用来遍历List。而Enumeration则是JDK1.0时引入的，作用与Iterator相同，但它的功能比Iterator要少，它只能再Hashtable、Vector和Stack中使用。</p>
+<p> Arrays和Collections是用来操作数组、集合的两个工具类，例如在ArrayList和Vector中大量调用了Arrays.Copyof()方法，而Collections中有很多静态方法可以返回各集合类的synchronized版本，即线程安全的版本，当然了，如果要用线程安全的结合类，首选Concurrent并发包下的对应的集合类。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">JavaSE</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/carlyle/2017/02/05/Java集合框架/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-String源码分析" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/carlyle/2017/02/01/String源码分析/">Java基础学习（一）</a>
+    </h1>
+  
+
+        
+        <a href="/carlyle/2017/02/01/String源码分析/" class="archive-article-date">
+  	<time datetime="2017-02-01T12:55:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-02-01</time>
+</a>
+        
+		
+      </header>
+		
+    
+
+    <!-- 目录内容 -->
+   
+<!-- 目录内容结束 -->
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>#String源码分析</p>
+<hr>
+<p>从一段代码说起：</p>
+<figure class="highlight arduino"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> stringTest()&#123;</span><br><span class="line">    <span class="keyword">String</span> a = <span class="string">"a"</span>+<span class="string">"b"</span>+<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">String</span> b = <span class="string">"ab1"</span>;</span><br><span class="line">    System.out.<span class="built_in">println</span>(a == b);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>大家猜一猜结果如何？如果你的结论是true。好吧，再来一段代码：</p>
+<figure class="highlight arduino"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> stringTest()&#123;</span><br><span class="line">    <span class="keyword">String</span> a = <span class="keyword">new</span> <span class="keyword">String</span>(<span class="string">"ab1"</span>);</span><br><span class="line">    <span class="keyword">String</span> b = <span class="string">"ab1"</span>;</span><br><span class="line">    System.out.<span class="built_in">println</span>(a == b);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>结果如何呢？正确答案是false。</p>
+<p>让我们看看经过编译器编译后的代码如何</p>
+<figure class="highlight arduino"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//第一段代码</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> stringTest() &#123;</span><br><span class="line">    <span class="keyword">String</span> a = <span class="string">"ab1"</span>;</span><br><span class="line">    <span class="keyword">String</span> b = <span class="string">"ab1"</span>;</span><br><span class="line">    System.out.<span class="built_in">println</span>(a == b);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight arduino"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//第二段代码</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> stringTest() &#123;</span><br><span class="line">    <span class="keyword">String</span> a1 = <span class="keyword">new</span> <span class="keyword">String</span>(<span class="string">"ab1"</span>);</span><br><span class="line">    <span class="keyword">String</span> b = <span class="string">"ab1"</span>;</span><br><span class="line">    System.out.<span class="built_in">println</span>(a1 == b);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>也就是说第一段代码经过了编译期优化，原因是编译器发现”a”+”b”+1和”ab1”的效果是一样的，都是不可变量组成。但是为什么他们的内存地址会相同呢？如果你对此还有兴趣，那就一起看看String类的一些重要源码吧。</p>
+<p>一 String类</p>
+<p>String类被final所修饰，也就是说String对象是不可变量，并发程序最喜欢不可变量了。String类实现了Serializable, Comparable<string>, CharSequence接口。</string></p>
+<p>Comparable接口有compareTo(String s)方法，CharSequence接口有length()，charAt(int index)，subSequence(int start,int end)方法。</p>
+<p>二 String属性</p>
+<p>String类中包含一个不可变的char数组用来存放字符串，一个int型的变量hash用来存放计算后的哈希值。</p>
+<figure class="highlight zephir"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/** The value is used for character storage. */</span></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">final</span> <span class="keyword">char</span> value[];</span><br><span class="line"></span><br><span class="line"><span class="comment">/** Cache the hash code for the string */</span></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">int</span> hash; <span class="comment">// Default to 0</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/** use serialVersionUID from JDK 1.0.2 for interoperability */</span></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">long</span> serialVersionUID = <span class="number">-6849794470754667710</span>L;</span><br></pre></td></tr></table></figure>
+<p>三 String构造函数</p>
+<figure class="highlight cs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//不含参数的构造函数，一般没什么用，因为value是不可变量</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="title">String</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.<span class="keyword">value</span> = <span class="keyword">new</span> <span class="keyword">char</span>[<span class="number">0</span>];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//参数为String类型</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="title">String</span>(<span class="params">String original</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.<span class="keyword">value</span> = original.<span class="keyword">value</span>;</span><br><span class="line">    <span class="keyword">this</span>.hash = original.hash;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//参数为char数组，使用java.utils包中的Arrays类复制</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="title">String</span>(<span class="params"><span class="keyword">char</span> <span class="keyword">value</span>[]</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.<span class="keyword">value</span> = Arrays.copyOf(<span class="keyword">value</span>, <span class="keyword">value</span>.length);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//从bytes数组中的offset位置开始，将长度为length的字节，以charsetName格式编码，拷贝到value</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="title">String</span>(<span class="params"><span class="keyword">byte</span> bytes[], <span class="keyword">int</span> offset, <span class="keyword">int</span> length, String charsetName</span>)</span></span><br><span class="line"><span class="function">        throws UnsupportedEncodingException </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (charsetName == <span class="literal">null</span>)</span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> NullPointerException(<span class="string">"charsetName"</span>);</span><br><span class="line">    checkBounds(bytes, offset, length);</span><br><span class="line">    <span class="keyword">this</span>.<span class="keyword">value</span> = StringCoding.decode(charsetName, bytes, offset, length);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//调用public String(byte bytes[], int offset, int length, String charsetName)构造函数</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="title">String</span>(<span class="params"><span class="keyword">byte</span> bytes[], String charsetName</span>)</span></span><br><span class="line"><span class="function">        throws UnsupportedEncodingException </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>(bytes, <span class="number">0</span>, bytes.length, charsetName);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>三 String常用方法</p>
+<figure class="highlight processing"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">boolean</span> equals(<span class="keyword">Object</span> anObject)</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="built_in">boolean</span> equals(<span class="keyword">Object</span> anObject) &#123;</span><br><span class="line">    <span class="comment">//如果引用的是同一个对象，返回真</span></span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">this</span> == anObject) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//如果不是String类型的数据，返回假</span></span><br><span class="line">    <span class="keyword">if</span> (anObject <span class="keyword">instanceof</span> <span class="keyword">String</span>) &#123;</span><br><span class="line">        <span class="keyword">String</span> anotherString = (<span class="keyword">String</span>) anObject;</span><br><span class="line">        <span class="built_in">int</span> n = value.length;</span><br><span class="line">        <span class="comment">//如果char数组长度不相等，返回假</span></span><br><span class="line">        <span class="keyword">if</span> (n == anotherString.value.length) &#123;</span><br><span class="line">            <span class="built_in">char</span> v1[] = value;</span><br><span class="line">            <span class="built_in">char</span> v2[] = anotherString.value;</span><br><span class="line">            <span class="built_in">int</span> i = <span class="number">0</span>;</span><br><span class="line">            <span class="comment">//从后往前单个字符判断，如果有不相等，返回假</span></span><br><span class="line">            <span class="keyword">while</span> (n-- != <span class="number">0</span>) &#123;</span><br><span class="line">                <span class="keyword">if</span> (v1[i] != v2[i])</span><br><span class="line">                        <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">                i++;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="comment">//每个字符都相等，返回真</span></span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>equals方法经常用得到，它用来判断两个对象从实际意义上是否相等，String对象判断规则：</p>
+<p>内存地址相同，则为真。</p>
+<p>如果对象类型不是String类型，则为假。否则继续判断。</p>
+<p>如果对象长度不相等，则为假。否则继续判断。</p>
+<p>从后往前，判断String类中char数组value的单个字符是否相等，有不相等则为假。如果一直相等直到第一个数，则返回真。</p>
+<p>由此可以看出，如果对两个超长的字符串进行比较还是非常费时间的。</p>
+<figure class="highlight cs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">compareTo</span>(<span class="params">String anotherString</span>)</span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">compareTo</span>(<span class="params">String anotherString</span>) </span>&#123;</span><br><span class="line">    <span class="comment">//自身对象字符串长度len1</span></span><br><span class="line">    <span class="keyword">int</span> len1 = <span class="keyword">value</span>.length;</span><br><span class="line">    <span class="comment">//被比较对象字符串长度len2</span></span><br><span class="line">    <span class="keyword">int</span> len2 = anotherString.<span class="keyword">value</span>.length;</span><br><span class="line">    <span class="comment">//取两个字符串长度的最小值lim</span></span><br><span class="line">    <span class="keyword">int</span> lim = Math.min(len1, len2);</span><br><span class="line">    <span class="keyword">char</span> v1[] = <span class="keyword">value</span>;</span><br><span class="line">    <span class="keyword">char</span> v2[] = anotherString.<span class="keyword">value</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">int</span> k = <span class="number">0</span>;</span><br><span class="line">    <span class="comment">//从value的第一个字符开始到最小长度lim处为止，如果字符不相等，返回自身（对象不相等处字符-被比较对象不相等字符）</span></span><br><span class="line">    <span class="keyword">while</span> (k &lt; lim) &#123;</span><br><span class="line">        <span class="keyword">char</span> c1 = v1[k];</span><br><span class="line">        <span class="keyword">char</span> c2 = v2[k];</span><br><span class="line">        <span class="keyword">if</span> (c1 != c2) &#123;</span><br><span class="line">            <span class="keyword">return</span> c1 - c2;</span><br><span class="line">        &#125;</span><br><span class="line">        k++;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//如果前面都相等，则返回（自身长度-被比较对象长度）</span></span><br><span class="line">    <span class="keyword">return</span> len1 - len2;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这个方法写的很巧妙，先从0开始判断字符大小。如果两个对象能比较字符的地方比较完了还相等，就直接返回自身长度减被比较对象长度，如果两个字符串长度相等，则返回的是0，巧妙地判断了三种情况。</p>
+<figure class="highlight cs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">hashCode</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">hashCode</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> h = hash;</span><br><span class="line">    <span class="comment">//如果hash没有被计算过，并且字符串不为空，则进行hashCode计算</span></span><br><span class="line">    <span class="keyword">if</span> (h == <span class="number">0</span> &amp;&amp; <span class="keyword">value</span>.length &gt; <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="keyword">char</span> val[] = <span class="keyword">value</span>;</span><br><span class="line"></span><br><span class="line">        <span class="comment">//计算过程</span></span><br><span class="line">        <span class="comment">//s[0]*31^(n-1) + s[1]*31^(n-2) + ... + s[n-1]</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="keyword">value</span>.length; i++) &#123;</span><br><span class="line">            h = <span class="number">31</span> * h + val[i];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//hash赋值</span></span><br><span class="line">        hash = h;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> h;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>String类重写了hashCode方法，Object中的hashCode方法是一个Native调用。String类的hash采用多项式计算得来，我们完全可以通过不相同的字符串得出同样的hash，所以两个String对象的hashCode相同，并不代表两个String是一样的。</p>
+<figure class="highlight aspectj"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">boolean</span> startsWith(String prefix,<span class="keyword">int</span> toffset)</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">boolean</span> <span class="title">startsWith</span><span class="params">(String prefix, <span class="keyword">int</span> toffset)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">char</span> ta[] = value;</span><br><span class="line">    <span class="keyword">int</span> to = toffset;</span><br><span class="line">    <span class="keyword">char</span> pa[] = prefix.value;</span><br><span class="line">    <span class="keyword">int</span> po = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">int</span> pc = prefix.value.length;</span><br><span class="line">    <span class="comment">// Note: toffset might be near -1&gt;&gt;&gt;1.</span></span><br><span class="line">    <span class="comment">//如果起始地址小于0或者（起始地址+所比较对象长度）大于自身对象长度，返回假</span></span><br><span class="line">    <span class="keyword">if</span> ((toffset &lt; <span class="number">0</span>) || (toffset &gt; value.length - pc)) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//从所比较对象的末尾开始比较</span></span><br><span class="line">    <span class="keyword">while</span> (--pc &gt;= <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="keyword">if</span> (ta[to++] != pa[po++]) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">boolean</span> <span class="title">startsWith</span><span class="params">(String prefix)</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">return</span> <span class="title">startsWith</span><span class="params">(prefix, <span class="number">0</span>)</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">boolean</span> <span class="title">endsWith</span><span class="params">(String suffix)</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">return</span> <span class="title">startsWith</span><span class="params">(suffix, value.length - suffix.value.length)</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>起始比较和末尾比较都是比较经常用得到的方法，例如在判断一个字符串是不是http协议的，或者初步判断一个文件是不是mp3文件，都可以采用这个方法进行比较。</p>
+<figure class="highlight processing"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">String</span> <span class="built_in">concat</span>(<span class="keyword">String</span> <span class="built_in">str</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">String</span> <span class="built_in">concat</span>(<span class="keyword">String</span> <span class="built_in">str</span>) &#123;</span><br><span class="line">    <span class="built_in">int</span> otherLen = <span class="built_in">str</span>.length();</span><br><span class="line">    <span class="comment">//如果被添加的字符串为空，返回对象本身</span></span><br><span class="line">    <span class="keyword">if</span> (otherLen == <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">int</span> len = value.length;</span><br><span class="line">    <span class="built_in">char</span> buf[] = Arrays.copyOf(value, len + otherLen);</span><br><span class="line">    <span class="built_in">str</span>.getChars(buf, len);</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> <span class="keyword">String</span>(buf, <span class="keyword">true</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>concat方法也是经常用的方法之一，它先判断被添加字符串是否为空来决定要不要创建新的对象。</p>
+<figure class="highlight cs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">String <span class="title">replace</span>(<span class="params"><span class="keyword">char</span> oldChar,<span class="keyword">char</span> newChar</span>)</span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function"><span class="keyword">public</span> String <span class="title">replace</span>(<span class="params"><span class="keyword">char</span> oldChar, <span class="keyword">char</span> newChar</span>) </span>&#123;</span><br><span class="line">    <span class="comment">//新旧值先对比</span></span><br><span class="line">    <span class="keyword">if</span> (oldChar != newChar) &#123;</span><br><span class="line">        <span class="keyword">int</span> len = <span class="keyword">value</span>.length;</span><br><span class="line">        <span class="keyword">int</span> i = <span class="number">-1</span>;</span><br><span class="line">        <span class="keyword">char</span>[] val = <span class="keyword">value</span>; <span class="comment">/* avoid getfield opcode */</span></span><br><span class="line"></span><br><span class="line">        <span class="comment">//找到旧值最开始出现的位置</span></span><br><span class="line">        <span class="keyword">while</span> (++i &lt; len) &#123;</span><br><span class="line">            <span class="keyword">if</span> (val[i] == oldChar) &#123;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//从那个位置开始，直到末尾，用新值代替出现的旧值</span></span><br><span class="line">        <span class="keyword">if</span> (i &lt; len) &#123;</span><br><span class="line">            <span class="keyword">char</span> buf[] = <span class="keyword">new</span> <span class="keyword">char</span>[len];</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; i; j++) &#123;</span><br><span class="line">                buf[j] = val[j];</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">while</span> (i &lt; len) &#123;</span><br><span class="line">                <span class="keyword">char</span> c = val[i];</span><br><span class="line">                buf[i] = (c == oldChar) ? newChar : c;</span><br><span class="line">                i++;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">new</span> String(buf, <span class="literal">true</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">this</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这个方法也有讨巧的地方，例如最开始先找出旧值出现的位置，这样节省了一部分对比的时间。replace(String oldStr,String newStr)方法通过正则表达式来判断。</p>
+<figure class="highlight cs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">String <span class="title">trim</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function"><span class="keyword">public</span> String <span class="title">trim</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> len = <span class="keyword">value</span>.length;</span><br><span class="line">    <span class="keyword">int</span> st = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">char</span>[] val = <span class="keyword">value</span>;    <span class="comment">/* avoid getfield opcode */</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">//找到字符串前段没有空格的位置</span></span><br><span class="line">    <span class="keyword">while</span> ((st &lt; len) &amp;&amp; (val[st] &lt;= <span class="string">' '</span>)) &#123;</span><br><span class="line">        st++;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//找到字符串末尾没有空格的位置</span></span><br><span class="line">    <span class="keyword">while</span> ((st &lt; len) &amp;&amp; (val[len - <span class="number">1</span>] &lt;= <span class="string">' '</span>)) &#123;</span><br><span class="line">        len--;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//如果前后都没有出现空格，返回字符串本身</span></span><br><span class="line">    <span class="keyword">return</span> ((st &gt; <span class="number">0</span>) || (len &lt; <span class="keyword">value</span>.length)) ? substring(st, len) : <span class="keyword">this</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>trim方法用起来也6的飞起</p>
+<figure class="highlight processing"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">String</span> intern()</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">native</span> <span class="keyword">String</span> intern();</span><br></pre></td></tr></table></figure>
+<p>intern方法是Native调用，它的作用是在方法区中的常量池里通过equals方法寻找等值的对象，如果没有找到则在常量池中开辟一片空间存放字符串并返回该对应String的引用，否则直接返回常量池中已存在String对象的引用。</p>
+<p>将引言中第二段代码</p>
+<figure class="highlight vhdl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">//<span class="built_in">String</span> a = <span class="keyword">new</span> <span class="built_in">String</span>(<span class="string">"ab1"</span>);</span><br><span class="line">//改为</span><br><span class="line"><span class="built_in">String</span> a = <span class="keyword">new</span> <span class="built_in">String</span>(<span class="string">"ab1"</span>).intern();</span><br></pre></td></tr></table></figure>
+<p>则结果为为真，原因在于a所指向的地址来自于常量池，而b所指向的字符串常量默认会调用这个方法，所以a和b都指向了同一个地址空间。</p>
+<figure class="highlight cs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">hash32</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function"><span class="keyword">private</span> transient <span class="keyword">int</span> hash32 </span>= <span class="number">0</span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">hash32</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> h = hash32;</span><br><span class="line">    <span class="keyword">if</span> (<span class="number">0</span> == h) &#123;</span><br><span class="line">       <span class="comment">// harmless data race on hash32 here.</span></span><br><span class="line">       h = sun.misc.Hashing.murmur3_32(HASHING_SEED, <span class="keyword">value</span>, <span class="number">0</span>, <span class="keyword">value</span>.length);</span><br><span class="line"></span><br><span class="line">       <span class="comment">// ensure result is not zero to avoid recalcing</span></span><br><span class="line">       h = (<span class="number">0</span> != h) ? h : <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line">       hash32 = h;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> h;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在JDK1.7中，Hash相关集合类在String类作key的情况下，不再使用hashCode方式离散数据，而是采用hash32方法。这个方法默认使用系统当前时间，String类地址，System类地址等作为因子计算得到hash种子，通过hash种子在经过hash得到32位的int型数值。</p>
+<figure class="highlight cs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">length</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">value</span>.length;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">public</span> String <span class="title">toString</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">this</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">public</span> boolean <span class="title">isEmpty</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">value</span>.length == <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">char</span> <span class="title">charAt</span>(<span class="params"><span class="keyword">int</span> index</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> ((index &lt; <span class="number">0</span>) || (index &gt;= <span class="keyword">value</span>.length)) &#123;</span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> StringIndexOutOfBoundsException(index);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">value</span>[index];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>以上是一些简单的常用方法。</p>
+<p>总结</p>
+<p>String对象是不可变类型，返回类型为String的String方法每次返回的都是新的String对象，除了某些方法的某些特定条件返回自身。</p>
+<p>String对象的三种比较方式：</p>
+<p>==内存比较：直接对比两个引用所指向的内存值，精确简洁直接明了。</p>
+<p>equals字符串值比较：比较两个引用所指对象字面值是否相等。</p>
+<p>hashCode字符串数值化比较：将字符串数值化。两个引用的hashCode相同，不保证内存一定相同，不保证字面值一定相同。</p>
 
       
 
@@ -318,7 +452,339 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/carlyle/2017/05/05/反射机制/">展开全文 >></a>
+          <a class="article-more-a" href="/carlyle/2017/02/01/String源码分析/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-Java基础知识" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/carlyle/2017/01/05/Java基础知识/">Java基础学习</a>
+    </h1>
+  
+
+        
+        <a href="/carlyle/2017/01/05/Java基础知识/" class="archive-article-date">
+  	<time datetime="2017-01-05T12:55:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-01-05</time>
+</a>
+        
+		
+      </header>
+		
+    
+
+    <!-- 目录内容 -->
+   
+<!-- 目录内容结束 -->
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>#J2SE</p>
+<hr>
+<h2 id="基础"><a href="#基础" class="headerlink" title="基础"></a>基础</h2><hr>
+<p><strong>八种基本数据类型的大小，以及他们的封装类。</strong></p>
+<p>八种基本数据类型，int ,double ,long ,float, short,byte,character,boolean</p>
+<p>对应的封装类型是：Integer ,Double ,Long ,Float, Short,Byte,Character,Boolean</p>
+<hr>
+<p><strong>Switch能否用string做参数？</strong></p>
+<p>在Java 5以前，switch(expr)中，expr只能是byte、short、char、int。从Java 5开始，Java中引入了枚举类型，expr也可以是enum类型，从Java 7开始，expr还可以是字符串（String），但是长整型（long）在目前所有的版本中都是不可以的。</p>
+<hr>
+<p><strong>equals与==的区别。</strong></p>
+<p><a href="http://www.importnew.com/6804.html" target="_blank" rel="noopener">http://www.importnew.com/6804.html</a></p>
+<blockquote>
+<p>==与equals的主要区别是：==常用于比较原生类型，而equals()方法用于检查对象的相等性。另一个不同的点是：如果==和equals()用于比较对象，当两个引用地址相同，==返回true。而equals()可以返回true或者false主要取决于重写实现。最常见的一个例子，字符串的比较，不同情况==和equals()返回不同的结果。equals()方法最重要的一点是，能够根据业务要求去重写，按照自定义规则去判断两个对象是否相等。重写equals()方法的时候，要注意一下hashCode是否会因为对象的属性改变而改变，否则在使用散列集合储存该对象的时候会碰到坑！！理解equals()方法的存在是很重要的。</p>
+</blockquote>
+<ol>
+<li><p>使用==比较有两种情况：</p>
+<pre><code>比较基础数据类型(Java中基础数据类型包括八中：short,int,long,float,double,char,byte,boolen)：这种情况下，==比较的是他们的值是否相等。
+引用间的比较：在这种情况下，==比较的是他们在内存中的地址，也就是说，除非引用指向的是同一个new出来的对象，此时他们使用`==`去比较得到true，否则，得到false。
+</code></pre></li>
+<li><p>使用equals进行比较：</p>
+<pre><code>equals追根溯源，是Object类中的一个方法，在该类中，equals的实现也仅仅只是比较两个对象的内存地址是否相等，但在一些子类中，如：String、Integer 等，该方法将被重写。
+</code></pre></li>
+<li><p>以<code>String</code>类为例子说明<code>eqauls</code>与<code>==</code>的区别：</p>
+<blockquote>
+<p>在开始这个例子之前，同学们需要知道JVM处理String的一些特性。<em>Java的虚拟机在内存中开辟出一块单独的区域，用来存储字符串对象，这块内存区域被称为字符串缓冲池。</em>当使用<br><code>String a = &quot;abc&quot;</code>这样的语句进行定义一个引用的时候，首先会在<em>字符串缓冲池</em>中查找是否已经相同的对象，如果存在，那么就直接将这个对象的引用返回给a，如果不存在，则需要新建一个值为”abc”的对象，再将新的引用返回a。<code>String a = new String(&quot;abc&quot;);</code>这样的语句明确告诉JVM想要产生一个新的String对象，并且值为”abc”，于是就<em>在堆内存中的某一个小角落开辟了一个新的String对象</em>。</p>
+</blockquote>
+<ul>
+<li><p><code>==</code>在比较引用的情况下，会去比较两个引用的内存地址是否相等。<br>​<figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">    <span class="keyword">String </span><span class="keyword">str1 </span>= <span class="string">"abc"</span><span class="comment">;</span></span><br><span class="line">    <span class="keyword">String </span><span class="keyword">str2 </span>= <span class="string">"abc"</span><span class="comment">;</span></span><br><span class="line">    </span><br><span class="line">    System.out.println(<span class="keyword">str1 </span>== <span class="keyword">str2);</span></span><br><span class="line"><span class="keyword"> </span>   System.out.println(<span class="keyword">str1.equals(str2));</span></span><br><span class="line"><span class="keyword"> </span>   </span><br><span class="line">    <span class="keyword">String </span><span class="keyword">str2 </span>= new <span class="keyword">String("abc");</span></span><br><span class="line"><span class="keyword"> </span>   System.out.println(<span class="keyword">str1 </span>== <span class="keyword">str2);</span></span><br><span class="line"><span class="keyword"> </span>   System.out.println(<span class="keyword">str1.equals(str2));</span></span><br><span class="line"><span class="keyword"> </span>   </span><br><span class="line">​</span><br></pre></td></tr></table></figure></p>
+<p>  以上代码将会输出<br>  true<br>  true<br>  false<br>  true<br>  <strong>第一个true：</strong>因为在str2赋值之前，str1的赋值操作就已经在内存中创建了一个值为”abc”的对象了，然后str2将会与str1指向相同的地址。<br>  <strong>第二个true：</strong>因为<code>String</code>已经重写了<code>equals</code>方法：为了方便大家阅读我贴出来，并且在注释用进行分析：</p>
+  <figure class="highlight processing"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">    <span class="keyword">public</span> <span class="built_in">boolean</span> equals(<span class="keyword">Object</span> anObject) &#123;</span><br><span class="line">    <span class="comment">//如果比较的对象与自身内存地址相等的话</span></span><br><span class="line">    <span class="comment">//就说明他两指向的是同一个对象</span></span><br><span class="line">    <span class="comment">//所以此时equals的返回值跟==的结果是一样的。</span></span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">this</span> == anObject) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//当比较的对象与自身的内存地址不相等，并且</span></span><br><span class="line">    <span class="comment">//比较的对象是String类型的时候</span></span><br><span class="line">    <span class="comment">//将会执行这个分支</span></span><br><span class="line">    <span class="keyword">if</span> (anObject <span class="keyword">instanceof</span> <span class="keyword">String</span>) &#123;</span><br><span class="line">        <span class="keyword">String</span> anotherString = (<span class="keyword">String</span>)anObject;</span><br><span class="line">        <span class="built_in">int</span> n = value.length;</span><br><span class="line">        <span class="keyword">if</span> (n == anotherString.value.length) &#123;</span><br><span class="line">            <span class="built_in">char</span> v1[] = value;</span><br><span class="line">            <span class="built_in">char</span> v2[] = anotherString.value;</span><br><span class="line">            <span class="built_in">int</span> i = <span class="number">0</span>;</span><br><span class="line">            <span class="comment">//在这里循环遍历两个String中的char</span></span><br><span class="line">            <span class="keyword">while</span> (n-- != <span class="number">0</span>) &#123;</span><br><span class="line">                <span class="comment">//只要有一个不相等，那么就会返回false</span></span><br><span class="line">                <span class="keyword">if</span> (v1[i] != v2[i])</span><br><span class="line">                    <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">                i++;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>  进行以上分析之后，就不难理解第一段代码中的实例程序输出了。</p>
+</li>
+</ul>
+</li>
+</ol>
+<hr>
+<hr>
+<p><strong>Object有哪些公用方法？</strong></p>
+<p><a href="http://www.cnblogs.com/yumo/p/4908315.html" target="_blank" rel="noopener">http://www.cnblogs.com/yumo/p/4908315.html</a></p>
+<p>1．clone方法</p>
+<p>保护方法，实现对象的浅复制，只有实现了Cloneable接口才可以调用该方法，否则抛出CloneNotSupportedException异常。</p>
+<p>主要是JAVA里除了8种基本类型传参数是值传递，其他的类对象传参数都是引用传递，我们有时候不希望在方法里讲参数改变，这是就需要在类中复写clone方法。</p>
+<p>2．getClass方法</p>
+<p>final方法，获得运行时类型。</p>
+<p>3．toString方法</p>
+<p>该方法用得比较多，一般子类都有覆盖。</p>
+<p>4．finalize方法</p>
+<p>该方法用于释放资源。因为无法确定该方法什么时候被调用，很少使用。</p>
+<p>5．equals方法</p>
+<p>该方法是非常重要的一个方法。一般equals和==是不一样的，但是在Object中两者是一样的。子类一般都要重写这个方法。</p>
+<p>6．hashCode方法</p>
+<p>该方法用于哈希查找，可以减少在查找中使用equals的次数，重写了equals方法一般都要重写hashCode方法。这个方法在一些具有哈希功能的Collection中用到。</p>
+<p>一般必须满足obj1.equals(obj2)==true。可以推出obj1.hashCode()==obj2.hashCode()，但是hashCode相等不一定就满足equals。不过为了提高效率，应该尽量使上面两个条件接近等价。</p>
+<p>如果不重写hashCode(),在HashSet中添加两个equals的对象，会将两个对象都加入进去。</p>
+<p>7．wait方法</p>
+<p>wait方法就是使当前线程等待该对象的锁，当前线程必须是该对象的拥有者，也就是具有该对象的锁。wait()方法一直等待，直到获得锁或者被中断。wait(long timeout)设定一个超时间隔，如果在规定时间内没有获得锁就返回。</p>
+<p>调用该方法后当前线程进入睡眠状态，直到以下事件发生。</p>
+<p>（1）其他线程调用了该对象的notify方法。</p>
+<p>（2）其他线程调用了该对象的notifyAll方法。</p>
+<p>（3）其他线程调用了interrupt中断该线程。</p>
+<p>（4）时间间隔到了。</p>
+<p>此时该线程就可以被调度了，如果是被中断的话就抛出一个InterruptedException异常。</p>
+<p>8．notify方法</p>
+<p>该方法唤醒在该对象上等待的某个线程。</p>
+<p>9．notifyAll方法</p>
+<p>该方法唤醒在该对象上等待的所有线程。</p>
+<hr>
+<p><strong>Java的四种引用，强弱软虚，用到的场景。</strong></p>
+<p>JDK1.2之前只有强引用,其他几种引用都是在JDK1.2之后引入的.</p>
+<ul>
+<li><p>强引用（Strong Reference）<br>  最常用的引用类型，如Object obj = new Object(); 。只要强引用存在则GC时则必定不被回收。</p>
+</li>
+<li><p>软引用（Soft Reference）<br>  用于描述还有用但非必须的对象，当堆将发生OOM（Out Of Memory）时则会回收软引用所指向的内存空间，若回收后依然空间不足才会抛出OOM。一般用于实现内存敏感的高速缓存。<br>当真正对象被标记finalizable以及的finalize()方法调用之后并且内存已经清理, 那么如果SoftReference object还存在就被加入到它的 ReferenceQueue.只有前面几步完成后,Soft Reference和Weak Reference的get方法才会返回null</p>
+</li>
+<li><p>弱引用（Weak Reference）<br>  发生GC时必定回收弱引用指向的内存空间。<br>和软引用加入队列的时机相同</p>
+</li>
+<li><p>虚引用（Phantom Reference)<br>又称为幽灵引用或幻影引用，虚引用既不会影响对象的生命周期，也无法通过虚引用来获取对象实例，仅用于在发生GC时接收一个系统通知。<br>当一个对象的finalize方法已经被调用了之后，这个对象的幽灵引用会被加入到队列中。通过检查该队列里面的内容就知道一个对象是不是已经准备要被回收了.<br>虚引用和软引用和弱引用都不同,它会在内存没有清理的时候被加入引用队列.虚引用的建立必须要传入引用队列,其他可以没有</p>
+</li>
+</ul>
+<hr>
+<p><strong>Hashcode的作用。</strong></p>
+<p><a href="http://c610367182.iteye.com/blog/1930676" target="_blank" rel="noopener">http://c610367182.iteye.com/blog/1930676</a></p>
+<p>以Java.lang.Object来理解,JVM每new一个Object,它都会将这个Object丢到一个Hash哈希表中去,这样的话,下次做Object的比较或者取这个对象的时候,它会根据对象的hashcode再从Hash表中取这个对象。这样做的目的是提高取对象的效率。具体过程是这样: </p>
+<ol>
+<li>new Object(),JVM根据这个对象的Hashcode值,放入到对应的Hash表对应的Key上,如果不同的对象确产生了相同的hash值,也就是发生了Hash key相同导致冲突的情况,那么就在这个Hash key的地方产生一个链表,将所有产生相同hashcode的对象放到这个单链表上去,串在一起。 </li>
+</ol>
+<ol>
+<li>比较两个对象的时候,首先根据他们的hashcode去hash表中找他的对象,当两个对象的hashcode相同,那么就是说他们这两个对象放在Hash表中的同一个key上,那么他们一定在这个key上的链表上。那么此时就只能根据Object的equal方法来比较这个对象是否equal。当两个对象的hashcode不同的话，肯定他们不能equal. </li>
+</ol>
+<hr>
+<p><strong>String、StringBuffer与StringBuilder的区别。</strong></p>
+<p>Java 平台提供了两种类型的字符串：String和StringBuffer / StringBuilder，它们可以储存和操作字符串。其中String是只读字符串，也就意味着String引用的字符串内容是不能被改变的。而StringBuffer和StringBulder类表示的字符串对象可以直接进行修改。StringBuilder是JDK1.5引入的，它和StringBuffer的方法完全相同，区别在于它是单线程环境下使用的，因为它的所有方面都没有被synchronized修饰，因此它的效率也比StringBuffer略高。</p>
+<hr>
+<p><strong>try catch finally，try里有return，finally还执行么？</strong></p>
+<p>会执行，在方法 返回调用者前执行。Java允许在finally中改变返回值的做法是不好的，因为如果存在finally代码块，try中的return语句不会立马返回调用者，而是纪录下返回值待finally代码块执行完毕之后再向调用者返回其值，然后如果在finally中修改了返回值，这会对程序造成很大的困扰，C#中就从语法规定不能做这样的事。</p>
+<hr>
+<p><strong>Excption与Error区别</strong></p>
+<p>Error表示系统级的错误和程序不必处理的异常，是恢复不是不可能但很困难的情况下的一种严重问题；比如内存溢出，不可能指望程序能处理这样的状况；Exception表示需要捕捉或者需要程序进行处理的异常，是一种设计或实现问题；也就是说，它表示如果程序运行正常，从不会发生的情况。</p>
+<hr>
+<p><strong>Excption与Error包结构。OOM你遇到过哪些情况，SOF你遇到过哪些情况。</strong></p>
+<p><a href="http://www.cnblogs.com/yumo/p/4909617.html" target="_blank" rel="noopener">http://www.cnblogs.com/yumo/p/4909617.html</a></p>
+<p>Java异常架构图</p>
+<p><img src="http://images2015.cnblogs.com/blog/679904/201510/679904-20151025210813989-921927916.jpg" alt=""></p>
+<ol>
+<li><p>Throwable<br>Throwable是 Java 语言中所有错误或异常的超类。<br>Throwable包含两个子类: Error 和 Exception 。它们通常用于指示发生了异常情况。<br>Throwable包含了其线程创建时线程执行堆栈的快照，它提供了printStackTrace()等接口用于获取堆栈跟踪数据等信息。</p>
+</li>
+<li><p>Exception<br>Exception及其子类是 Throwable 的一种形式，它指出了合理的应用程序想要捕获的条件。</p>
+</li>
+<li><p>RuntimeException<br>RuntimeException是那些可能在 Java 虚拟机正常运行期间抛出的异常的超类。<br>编译器不会检查RuntimeException异常。 例如，除数为零时，抛出ArithmeticException异常。RuntimeException是ArithmeticException的超类。当代码发生除数为零的情况时，倘若既”没有通过throws声明抛出ArithmeticException异常”，也”没有通过try…catch…处理该异常”，也能通过编译。这就是我们所说的”编译器不会检查RuntimeException异常”！<br>如果代码会产生RuntimeException异常，则需要通过修改代码进行避免。 例如，若会发生除数为零的情况，则需要通过代码避免该情况的发生！</p>
+</li>
+<li><p>Error<br>和Exception一样， Error也是Throwable的子类。 它用于指示合理的应用程序不应该试图捕获的严重问题，大多数这样的错误都是异常条件。<br>和RuntimeException一样， 编译器也不会检查Error。</p>
+</li>
+</ol>
+<p>Java将可抛出(Throwable)的结构分为三种类型： 被检查的异常(Checked Exception)，运行时异常(RuntimeException)和错误(Error)。</p>
+<p>(01) 运行时异常<br>定义 : RuntimeException及其子类都被称为运行时异常。<br>特点 : Java编译器不会检查它。 也就是说，当程序中可能出现这类异常时，倘若既”没有通过throws声明抛出它”，也”没有用try-catch语句捕获它”，还是会编译通过。例如，除数为零时产生的ArithmeticException异常，数组越界时产生的IndexOutOfBoundsException异常，fail-fail机制产生的ConcurrentModificationException异常等，都属于运行时异常。<br>虽然Java编译器不会检查运行时异常，但是我们也可以通过throws进行声明抛出，也可以通过try-catch对它进行捕获处理。<br>如果产生运行时异常，则需要通过修改代码来进行避免。 例如，若会发生除数为零的情况，则需要通过代码避免该情况的发生！</p>
+<p>(02) 被检查的异常<br>定义 :  Exception类本身，以及Exception的子类中除了”运行时异常”之外的其它子类都属于被检查异常。<br>特点 : Java编译器会检查它。 此类异常，要么通过throws进行声明抛出，要么通过try-catch进行捕获处理，否则不能通过编译。例如，CloneNotSupportedException就属于被检查异常。当通过clone()接口去克隆一个对象，而该对象对应的类没有实现Cloneable接口，就会抛出CloneNotSupportedException异常。<br>被检查异常通常都是可以恢复的。</p>
+<p>(03) 错误<br>定义 : Error类及其子类。<br>特点 : 和运行时异常一样，编译器也不会对错误进行检查。<br>当资源不足、约束失败、或是其它程序无法继续运行的条件发生时，就产生错误。程序本身无法修复这些错误的。例如，VirtualMachineError就属于错误。<br>按照Java惯例，我们是不应该是实现任何新的Error子类的！</p>
+<p>对于上面的3种结构，我们在抛出异常或错误时，到底该哪一种？《Effective Java》中给出的建议是： 对于可以恢复的条件使用被检查异常，对于程序错误使用运行时异常。</p>
+<hr>
+<p><strong>OOM：</strong></p>
+<ol>
+<li><p>OutOfMemoryError异常</p>
+<p> 除了程序计数器外，虚拟机内存的其他几个运行时区域都有发生OutOfMemoryError(OOM)异常的可能，</p>
+<p> Java Heap 溢出</p>
+<p> 一般的异常信息：java.lang.OutOfMemoryError:Java heap spacess</p>
+<p> java堆用于存储对象实例，我们只要不断的创建对象，并且保证GC Roots到对象之间有可达路径来避免垃圾回收机制清除这些对象，就会在对象数量达到最大堆容量限制后产生内存溢出异常。</p>
+<p> 出现这种异常，一般手段是先通过内存映像分析工具(如Eclipse Memory Analyzer)对dump出来的堆转存快照进行分析，重点是确认内存中的对象是否是必要的，先分清是因为内存泄漏(Memory Leak)还是内存溢出(Memory Overflow)。</p>
+<p> 如果是内存泄漏，可进一步通过工具查看泄漏对象到GC Roots的引用链。于是就能找到泄漏对象时通过怎样的路径与GC Roots相关联并导致垃圾收集器无法自动回收。</p>
+<p> 如果不存在泄漏，那就应该检查虚拟机的参数(-Xmx与-Xms)的设置是否适当。</p>
+</li>
+<li><p>虚拟机栈和本地方法栈溢出</p>
+<p> 如果线程请求的栈深度大于虚拟机所允许的最大深度，将抛出StackOverflowError异常。</p>
+<p> 如果虚拟机在扩展栈时无法申请到足够的内存空间，则抛出OutOfMemoryError异常</p>
+<p> 这里需要注意当栈的大小越大可分配的线程数就越少。</p>
+</li>
+<li><p>运行时常量池溢出</p>
+<p> 异常信息：java.lang.OutOfMemoryError:PermGen space</p>
+<p> 如果要向运行时常量池中添加内容，最简单的做法就是使用String.intern()这个Native方法。该方法的作用是：如果池中已经包含一个等于此String的字符串，则返回代表池中这个字符串的String对象；否则，将此String对象包含的字符串添加到常量池中，并且返回此String对象的引用。由于常量池分配在方法区内，我们可以通过-XX:PermSize和-XX:MaxPermSize限制方法区的大小，从而间接限制其中常量池的容量。</p>
+</li>
+<li><p>方法区溢出</p>
+<p> 方法区用于存放Class的相关信息，如类名、访问修饰符、常量池、字段描述、方法描述等。</p>
+<p> 异常信息：java.lang.OutOfMemoryError:PermGen space</p>
+<p> 方法区溢出也是一种常见的内存溢出异常，一个类如果要被垃圾收集器回收，判定条件是很苛刻的。在经常动态生成大量Class的应用中，要特别注意这点。</p>
+</li>
+</ol>
+<hr>
+<p><strong>Java面向对象的三个特征与含义。</strong></p>
+<p>继承：继承是从已有类得到继承信息创建新类的过程。提供继承信息的类被称为父类（超类、基类）；得到继承信息的类被称为子类（派生类）。继承让变化中的软件系统有了一定的延续性，同时继承也是封装程序中可变因素的重要手段。</p>
+<p>封装：通常认为封装是把数据和操作数据的方法绑定起来，对数据的访问只能通过已定义的接口。面向对象的本质就是将现实世界描绘成一系列完全自治、封闭的对象。我们在类中编写的方法就是对实现细节的一种封装；我们编写一个类就是对数据和数据操作的封装。可以说，封装就是隐藏一切可隐藏的东西，只向外界提供最简单的编程接口（可以想想普通洗衣机和全自动洗衣机的差别，明显全自动洗衣机封装更好因此操作起来更简单；我们现在使用的智能手机也是封装得足够好的，因为几个按键就搞定了所有的事情）。</p>
+<p>多态：多态性是指允许不同子类型的对象对同一消息作出不同的响应。简单的说就是用同样的对象引用调用同样的方法但是做了不同的事情。多态性分为编译时的多态性和运行时的多态性。如果将对象的方法视为对象向外界提供的服务，那么运行时的多态性可以解释为：当A系统访问B系统提供的服务时，B系统有多种提供服务的方式，但一切对A系统来说都是透明的（就像电动剃须刀是A系统，它的供电系统是B系统，B系统可以使用电池供电或者用交流电，甚至还有可能是太阳能，A系统只会通过B类对象调用供电的方法，但并不知道供电系统的底层实现是什么，究竟通过何种方式获得了动力）。方法重载（overload）实现的是编译时的多态性（也称为前绑定），而方法重写（override）实现的是运行时的多态性（也称为后绑定）。运行时的多态是面向对象最精髓的东西，要实现多态需要做两件事：1. 方法重写（子类继承父类并重写父类中已有的或抽象的方法）；2. 对象造型（用父类型引用引用子类型对象，这样同样的引用调用同样的方法就会根据子类对象的不同而表现出不同的行为）。</p>
+<hr>
+<p><strong>Override和Overload的含义与区别。</strong></p>
+<p>Overload：顾名思义，就是Over(重新)——load（加载），所以中文名称是重载。它可以表现类的多态性，可以是函数里面可以有相同的函数名但是参数名、类型不能相同；或者说可以改变参数、类型但是函数名字依然不变。</p>
+<p>Override：就是ride(重写)的意思，在子类继承父类的时候子类中可以定义某方法与其父类有相同的名称和参数，当子类在调用这一函数时自动调用子类的方法，而父类相当于被覆盖（重写）了。</p>
+<p>方法的重写Overriding和重载Overloading是Java多态性的不同表现。重写Overriding是父类与子类之间多态性的一种表现，重载Overloading是一个类中多态性的一种表现。如果在子类中定义某方法与其父类有相同的名称和参数，我们说该方法被重写 (Overriding)。子类的对象使用这个方法时，将调用子类中的定义，对它而言，父类中的定义如同被“屏蔽”了。如果在一个类中定义了多个同名的方法，它们或有不同的参数个数或有不同的参数类型，则称为方法的重载(Overloading)。Overloaded的方法是可以改变返回值的类型。</p>
+<hr>
+<p><strong>Interface与abstract类的区别。</strong></p>
+<p>抽象类和接口都不能够实例化，但可以定义抽象类和接口类型的引用。一个类如果继承了某个抽象类或者实现了某个接口都需要对其中的抽象方法全部进行实现，否则该类仍然需要被声明为抽象类。接口比抽象类更加抽象，因为抽象类中可以定义构造器，可以有抽象方法和具体方法，而接口中不能定义构造器而且其中的方法全部都是抽象方法。抽象类中的成员可以是private、默认、protected、public的，而接口中的成员全都是public的。抽象类中可以定义成员变量，而接口中定义的成员变量实际上都是常量。有抽象方法的类必须被声明为抽象类，而抽象类未必要有抽象方法。</p>
+<hr>
+<p><strong>Static class 与non static class的区别。</strong></p>
+<p>内部静态类不需要有指向外部类的引用。但非静态内部类需要持有对外部类的引用。非静态内部类能够访问外部类的静态和非静态成员。静态类不能访问外部类的非静态成员。他只能访问外部类的静态成员。一个非静态内部类不能脱离外部类实体被创建，一个非静态内部类可以访问外部类的数据和方法，因为他就在外部类里面。</p>
+<hr>
+<p><strong>java多态的实现原理。</strong></p>
+<p><a href="http://blog.csdn.net/zzzhangzhun/article/details/51095075" target="_blank" rel="noopener">http://blog.csdn.net/zzzhangzhun/article/details/51095075</a></p>
+<p>当JVM执行Java字节码时，类型信息会存储在方法区中，为了优化对象的调用方法的速度，方法区的类型信息会增加一个指针，该指针指向一个记录该类方法的方法表，方法表中的每一个项都是对应方法的指针。</p>
+<p>方法区：方法区和JAVA堆一样，是各个线程共享的内存区域，用于存储已被虚拟机加载的类信息、常量、静态变量、即时编译器编译后的代码等数据。<br>运行时常量池：它是方法区的一部分，Class文件中除了有类的版本、方法、字段等描述信息外，还有一项信息是常量池，用于存放编译器生成的各种符号引用，这部分信息在类加载时进入方法区的运行时常量池中。<br>方法区的内存回收目标是针对常量池的回收及对类型的卸载。</p>
+<p>方法表的构造</p>
+<p>由于java的单继承机制，一个类只能继承一个父类，而所有的类又都继承Object类，方法表中最先存放的是Object的方法，接下来是父类的方法，最后是该类本身的方法。如果子类改写了父类的方法，那么子类和父类的那些同名的方法共享一个方法表项。</p>
+<p>由于这样的特性，使得方法表的偏移量总是固定的，例如，对于任何类来说，其方法表的equals方法的偏移量总是一个定值，所有继承父类的子类的方法表中，其父类所定义的方法的偏移量也总是一个定值。</p>
+<p>实例</p>
+<p>假设Class A是Class B的子类，并且A改写了B的方法的method()，那么B来说，method方法的指针指向B的method方法入口；对于A来说，A的方法表的method项指向自身的method而非父类的。</p>
+<p>流程：调用方法时，虚拟机通过对象引用得到方法区中类型信息的方法表的指针入口，查询类的方法表 ，根据实例方法的符号引用解析出该方法在方法表的偏移量，子类对象声明为父类类型时，形式上调用的是父类的方法，此时虚拟机会从实际的方法表中找到方法地址，从而定位到实际类的方法。<br>注：所有引用为父类，但方法区的类型信息中存放的是子类的信息，所以调用的是子类的方法表。</p>
+<hr>
+<p><strong>foreach与正常for循环效率对比。</strong></p>
+<p><a href="http://904510742.iteye.com/blog/2118331" target="_blank" rel="noopener">http://904510742.iteye.com/blog/2118331</a></p>
+<p>直接for循环效率最高，其次是迭代器和 ForEach操作。<br>作为语法糖，其实 ForEach 编译成 字节码之后，使用的是迭代器实现的，反编译后，testForEach方法如下：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">testForEach</span><span class="params">(List <span class="built_in">list</span>)</span> </span>&#123;  </span><br><span class="line">    <span class="keyword">for</span> (Iterator iterator = <span class="built_in">list</span>.iterator(); iterator.hasNext();) &#123;  </span><br><span class="line">        Object t = iterator.next();  </span><br><span class="line">        Object obj = t;  </span><br><span class="line">    &#125;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>可以看到，只比迭代器遍历多了生成中间变量这一步，因为性能也略微下降了一些。</p>
+<hr>
+<p><strong>反射机制</strong></p>
+<p>JAVA反射机制是在运行状态中, 对于任意一个类, 都能够知道这个类的所有属性和方法; 对于任意一个对象, 都能够调用它的任意一个方法和属性; 这种动态获取的信息以及动态调用对象的方法的功能称为java语言的反射机制.</p>
+<p>主要作用有三：</p>
+<p>运行时取得类的方法和字段的相关信息。</p>
+<p>创建某个类的新实例(.newInstance())</p>
+<p>取得字段引用直接获取和设置对象字段，无论访问修饰符是什么。</p>
+<p>用处如下：</p>
+<p>观察或操作应用程序的运行时行为。</p>
+<p>调试或测试程序，因为可以直接访问方法、构造函数和成员字段。</p>
+<p>通过名字调用不知道的方法并使用该信息来创建对象和调用方法。</p>
+<hr>
+<p><strong>String类内部实现，能否改变String对象内容</strong></p>
+<p><a href="https://github.com/GeniusVJR/LearningNotes/blob/master/Part2/JavaSE/String源码分析.md">String源码分析</a></p>
+<p><a href="http://blog.csdn.net/zhangjg_blog/article/details/18319521" target="_blank" rel="noopener">http://blog.csdn.net/zhangjg_blog/article/details/18319521</a></p>
+<hr>
+<p><strong>try catch 块，try里有return，finally也有return，如何执行</strong></p>
+<p><a href="http://qing0991.blog.51cto.com/1640542/1387200" target="_blank" rel="noopener">http://qing0991.blog.51cto.com/1640542/1387200</a></p>
+<hr>
+<p><strong>泛型的优缺点</strong></p>
+<p>优点：</p>
+<p>使用泛型类型可以最大限度地重用代码、保护类型的安全以及提高性能。</p>
+<p>泛型最常见的用途是创建集合类。</p>
+<p>缺点：</p>
+<p>在性能上不如数组快。</p>
+<hr>
+<p><strong>泛型常用特点，List<code>&lt;String&gt;</code>能否转为List<code>&lt;Object&gt;</code></strong></p>
+<p>能，但是利用类都继承自Object，所以使用是每次调用里面的函数都要通过强制转换还原回原来的类，这样既不安全，运行速度也慢。</p>
+<hr>
+<p><strong>解析XML的几种方式的原理与特点：DOM、SAX、PULL。</strong></p>
+<p><a href="http://www.cnblogs.com/HaroldTihan/p/4316397.html" target="_blank" rel="noopener">http://www.cnblogs.com/HaroldTihan/p/4316397.html</a></p>
+<hr>
+<p><strong>Java与C++对比。</strong></p>
+<p><a href="http://developer.51cto.com/art/201106/270422.htm" target="_blank" rel="noopener">http://developer.51cto.com/art/201106/270422.htm</a></p>
+<hr>
+<p><strong>Java1.7与1.8新特性。</strong></p>
+<p><a href="http://blog.chinaunix.net/uid-29618857-id-4416835.html" target="_blank" rel="noopener">http://blog.chinaunix.net/uid-29618857-id-4416835.html</a></p>
+<hr>
+<p><strong>JNI的使用。</strong></p>
+<p><a href="http://landerlyoung.github.io/blog/2014/10/16/java-zhong-jnide-shi-yong/" target="_blank" rel="noopener">http://landerlyoung.github.io/blog/2014/10/16/java-zhong-jnide-shi-yong/</a></p>
+<hr>
+<p>###集合</p>
+<p><strong>ArrayList、LinkedList、Vector的底层实现和区别</strong></p>
+<ul>
+<li>从同步性来看，ArrayList和LinkedList是不同步的，而Vector是的。所以线程安全的话，可以使用ArrayList或LinkedList，可以节省为同步而耗费的开销。但在多线程下，有时候就不得不使用Vector了。当然，也可以通过一些办法包装ArrayList、LinkedList，使我们也达到同步，但效率可能会有所降低。</li>
+<li>从内部实现机制来讲ArrayList和Vector都是使用Object的数组形式来存储的。当你向这两种类型中增加元素的时候，如果元素的数目超出了内部数组目前的长度它们都需要扩展内部数组的长度，Vector缺省情况下自动增长原来一倍的数组长度，ArrayList是原来的50%，所以最后你获得的这个集合所占的空间总是比你实际需要的要大。如果你要在集合中保存大量的数据，那么使用Vector有一些优势，因为你可以通过设置集合的初始化大小来避免不必要的资源开销。</li>
+<li>ArrayList和Vector中，从指定的位置（用index）检索一个对象，或在集合的末尾插入、删除一个对象的时间是一样的，可表示为O(1)。但是，如果在集合的其他位置增加或者删除元素那么花费的时间会呈线性增长O(n-i)，其中n代表集合中元素的个数，i代表元素增加或移除元素的索引位置，因为在进行上述操作的时候集合中第i和第i个元素之后的所有元素都要执行(n-i)个对象的位移操作。LinkedList底层是由双向循环链表实现的，LinkedList在插入、删除集合中任何位置的元素所花费的时间都是一样的O(1)，但它在索引一个元素的时候比较慢，为O(i)，其中i是索引的位置，如果只是查找特定位置的元素或只在集合的末端增加、移除元素，那么使用Vector或ArrayList都可以。如果是对其它指定位置的插入、删除操作，最好选择LinkedList。</li>
+</ul>
+<p><strong>HashMap和HashTable的底层实现和区别，两者和ConcurrentHashMap的区别。</strong></p>
+<p><a href="http://blog.csdn.net/xuefeng0707/article/details/40834595" target="_blank" rel="noopener">http://blog.csdn.net/xuefeng0707/article/details/40834595</a></p>
+<p>HashTable线程安全则是依靠方法简单粗暴的sychronized修饰，HashMap则没有相关的线程安全问题考虑。。</p>
+<p>在以前的版本貌似ConcurrentHashMap引入了一个“分段锁”的概念，具体可以理解为把一个大的Map拆分成N个小的HashTable，根据key.hashCode()来决定把key放到哪个HashTable中。在ConcurrentHashMap中，就是把Map分成了N个Segment，put和get的时候，都是现根据key.hashCode()算出放到哪个Segment中。</p>
+<p>通过把整个Map分为N个Segment（类似HashTable），可以提供相同的线程安全，但是效率提升N倍。</p>
+<hr>
+<p><strong>HashMap的hashcode的作用？什么时候需要重写？如何解决哈希冲突？查找的时候流程是如何？</strong></p>
+<p><a href="http://blog.csdn.net/codeemperor/article/details/51351247" target="_blank" rel="noopener">从源码分析HashMap</a></p>
+<hr>
+<p><strong>Arraylist和HashMap如何扩容？负载因子有什么作用？如何保证读写进程安全？</strong></p>
+<p><a href="http://m.blog.csdn.net/article/details?id=48956087" target="_blank" rel="noopener">http://m.blog.csdn.net/article/details?id=48956087</a></p>
+<p><a href="http://hovertree.com/h/bjaf/2jdr60li.htm" target="_blank" rel="noopener">http://hovertree.com/h/bjaf/2jdr60li.htm</a></p>
+<p>ArrayList 本身不是线程安全的。<br>所以正确的做法是去用 java.util.concurrent 里的 CopyOnWriteArrayList 或者某个同步的 Queue 类。</p>
+<p>HashMap实现不是同步的。如果多个线程同时访问一个哈希映射，而其中至少一个线程从结构上修改了该映射，则它必须 保持外部同步。（结构上的修改是指添加或删除一个或多个映射关系的任何操作；仅改变与实例已经包含的键关联的值不是结构上的修改。）这一般通过对自然封装该映射的对象进行同步操作来完成。如果不存在这样的对象，则应该使用 Collections.synchronizedMap 方法来“包装”该映射。最好在创建时完成这一操作，以防止对映射进行意外的非同步访问.</p>
+<hr>
+<p><strong>TreeMap、HashMap、LinkedHashMap的底层实现区别。</strong></p>
+<p><a href="http://blog.csdn.net/lolashe/article/details/20806319" target="_blank" rel="noopener">http://blog.csdn.net/lolashe/article/details/20806319</a></p>
+<hr>
+<p><strong>Collection包结构，与Collections的区别。</strong></p>
+<p>Collection是一个接口，它是Set、List等容器的父接口；Collections是一个工具类，提供了一系列的静态方法来辅助容器操作，这些方法包括对容器的搜索、排序、线程安全化等等。</p>
+<hr>
+<p><strong>Set、List之间的区别是什么?</strong></p>
+<p><a href="http://developer.51cto.com/art/201309/410205_all.htm" target="_blank" rel="noopener">http://developer.51cto.com/art/201309/410205_all.htm</a></p>
+<hr>
+<p><strong>Map、Set、List、Queue、Stack的特点与用法。</strong></p>
+<p><a href="http://www.cnblogs.com/yumo/p/4908718.html" target="_blank" rel="noopener">http://www.cnblogs.com/yumo/p/4908718.html</a></p>
+<p>Collection 是对象集合， Collection 有两个子接口 List 和 Set</p>
+<p>List 可以通过下标 (1,2..) 来取得值，值可以重复</p>
+<p>而 Set 只能通过游标来取值，并且值是不能重复的</p>
+<p>ArrayList ， Vector ， LinkedList 是 List 的实现类</p>
+<p>ArrayList 是线程不安全的， Vector 是线程安全的，这两个类底层都是由数组实现的</p>
+<p>LinkedList 是线程不安全的，底层是由链表实现的   </p>
+<p>Map 是键值对集合</p>
+<p>HashTable 和 HashMap 是 Map 的实现类<br>HashTable 是线程安全的，不能存储 null 值<br>HashMap 不是线程安全的，可以存储 null 值  </p>
+<p>Stack类：继承自Vector，实现一个后进先出的栈。提供了几个基本方法，push、pop、peak、empty、search等。</p>
+<p>Queue接口：提供了几个基本方法，offer、poll、peek等。已知实现类有LinkedList、PriorityQueue等。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/carlyle/2017/01/05/Java基础知识/">展开全文 >></a>
         </p>
       
 
@@ -350,7 +816,7 @@
   
   
     <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/carlyle/page/4/">&laquo; Prev</a><a class="page-number" href="/carlyle/">1</a><span class="space">&hellip;</span><a class="page-number" href="/carlyle/page/3/">3</a><a class="page-number" href="/carlyle/page/4/">4</a><span class="page-number current">5</span><a class="page-number" href="/carlyle/page/6/">6</a><a class="page-number" href="/carlyle/page/7/">7</a><span class="space">&hellip;</span><a class="page-number" href="/carlyle/page/14/">14</a><a class="extend next" rel="next" href="/carlyle/page/6/">Next &raquo;</a>
+      <a class="extend prev" rel="prev" href="/carlyle/page/4/">&laquo; Prev</a><a class="page-number" href="/carlyle/">1</a><span class="space">&hellip;</span><a class="page-number" href="/carlyle/page/3/">3</a><a class="page-number" href="/carlyle/page/4/">4</a><span class="page-number current">5</span>
     </nav>
   
 
@@ -475,11 +941,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Java基础</a>
+                <a href="javascript:void(0)" class="js-tag color2">I</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">I</a>
+                <a href="javascript:void(0)" class="js-tag color2">Java基础</a>
               </li>
              
               <li class="article-tag-list-item">
