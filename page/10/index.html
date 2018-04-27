@@ -177,100 +177,6 @@
           <div id="js-content" class="content-ll">
             
   
-    <article id="post-Redis学习1" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/carlyle/2018/02/01/Redis学习1/">Redis的基本认识（一）</a>
-    </h1>
-  
-
-        
-        <a href="/carlyle/2018/02/01/Redis学习1/" class="archive-article-date">
-  	<time datetime="2018-02-01T02:55:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-02-01</time>
-</a>
-        
-		
-      </header>
-		
-    
-
-    <!-- 目录内容 -->
-   
-<!-- 目录内容结束 -->
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="Redis的基本认识（一）"><a href="#Redis的基本认识（一）" class="headerlink" title="Redis的基本认识（一）"></a>Redis的基本认识（一）</h1><h2 id="redis的五种数据类型"><a href="#redis的五种数据类型" class="headerlink" title="redis的五种数据类型"></a>redis的五种数据类型</h2><p><strong>1.String 字符串</strong>:</p>
-<ul>
-<li><p>string是redis最基本的类型，你可以理解成与Memcached一模一样的类型，一个key对应一个value。</p>
-</li>
-<li><p>string类型是二进制安全的。意思是redis的string可以包含任何数据。比如jpg图片或者序列化的对象 。</p>
-</li>
-<li>string类型是Redis最基本的数据类型，一个键最大能存储512MB。 </li>
-</ul>
-<p><strong>实列</strong></p>
-<p> 存数据：set key value</p>
-<p> 取数据： get key</p>
-<p> 查看数据类型：type key</p>
-        
-          <a class="article-more-a" href="/carlyle/2018/02/01/Redis学习1/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">redis</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/carlyle/2018/02/01/Redis学习1/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
     <article id="post-Set" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -318,6 +224,94 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/carlyle/2017/03/12/Set/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-Queue" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/carlyle/2017/03/11/Queue/">Java基础学习（一）</a>
+    </h1>
+  
+
+        
+        <a href="/carlyle/2017/03/11/Queue/" class="archive-article-date">
+  	<time datetime="2017-03-11T12:55:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-03-11</time>
+</a>
+        
+		
+      </header>
+		
+    
+
+    <!-- 目录内容 -->
+   
+<!-- 目录内容结束 -->
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <ul>
+<li>是一个泛型接口</li>
+<li>父接口：Collection</li>
+<li>子接口：Deque</li>
+</ul>
+<h2 id="简介"><a href="#简介" class="headerlink" title="##简介"></a>##简介</h2><ul>
+<li>是个队列</li>
+<li>插入、提取、检查操作都存在两种形式，一种在操作失败后返回特殊值，一种抛出异常</li>
+</ul>
+<h2 id="方法"><a href="#方法" class="headerlink" title="##方法"></a>##方法</h2><ol>
+<li>boolean add(E e)和 boolean offer(E e)添加元素<br>失败时，add()抛出异常，offer()返回false</li>
+<li>E element()和E peek()获取但不移除<br>失败时，element抛出异常，peek()返回null</li>
+<li>E remove()和E poll()获取并移除<br>失败时，remove()抛出异常，poll()返回null</li>
+</ol>
+<h2 id="子类介绍"><a href="#子类介绍" class="headerlink" title="##子类介绍"></a>##子类介绍</h2><p>###Deque</p>
+<ul>
+<li>双端队列</li>
+<li>可以实现队列。也可以用作栈</li>
+</ul>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/carlyle/2017/03/11/Queue/">展开全文 >></a>
         </p>
       
 
@@ -478,11 +472,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">redis</a>
+                <a href="javascript:void(0)" class="js-tag color5">设计架构</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">spring mvc</a>
+                <a href="javascript:void(0)" class="js-tag color1">Markdown语法</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -490,11 +484,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">设计架构</a>
+                <a href="javascript:void(0)" class="js-tag color1">spring mvc</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Markdown语法</a>
+                <a href="javascript:void(0)" class="js-tag color1">redis</a>
               </li>
             
             <div class="clearfix"></div>

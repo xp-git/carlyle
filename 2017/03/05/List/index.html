@@ -6,19 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://github.com/xp-git/carlyle">
-  <title>Carlyle</title>
+  <title>Java基础学习（一） | Carlyle</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="toc: truelayout: posttitle: Java基础学习（一）date: 2017-03-05 10:55comments: truetags:  List&amp;lt;E&amp;gt;  是一个接口 继承的接口：Collection 间接继承的接口：Iterable 实现类：ArrayList、LinkedList、Vector等  ###简介  List是有序的Collection 可以对每个元">
+  <meta name="description" content="是一个接口 继承的接口：Collection 间接继承的接口：Iterable 实现类：ArrayList、LinkedList、Vector等  简介 List是有序的Collection 可以对每个元素的插入位置进行精准控制 可以根据索引访问元素   允许重复元素 有自己的迭代器 ListIterator 如果元素包含自身，equals()和hashCode()不再是良定义的  方法bool">
 <meta name="keywords" content="redis,前端,js,jquery,javascript,html5,Markdown语法,开发者,程序猿,程序媛,极客,编程,代码,开源,IT网站,Developer,Programmer,Coder,Geek,html,css,css3,用户体验,java,linux">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Carlyle">
-<meta property="og:url" content="https://github.com/xp-git/carlyle/2018/04/02/List/index.html">
+<meta property="og:title" content="Java基础学习（一）">
+<meta property="og:url" content="https://github.com/xp-git/carlyle/2017/03/05/List/index.html">
 <meta property="og:site_name" content="Carlyle">
-<meta property="og:description" content="toc: truelayout: posttitle: Java基础学习（一）date: 2017-03-05 10:55comments: truetags:  List&amp;lt;E&amp;gt;  是一个接口 继承的接口：Collection 间接继承的接口：Iterable 实现类：ArrayList、LinkedList、Vector等  ###简介  List是有序的Collection 可以对每个元">
-<meta property="og:updated_time" content="2018-04-02T15:00:45.541Z">
+<meta property="og:description" content="是一个接口 继承的接口：Collection 间接继承的接口：Iterable 实现类：ArrayList、LinkedList、Vector等  简介 List是有序的Collection 可以对每个元素的插入位置进行精准控制 可以根据索引访问元素   允许重复元素 有自己的迭代器 ListIterator 如果元素包含自身，equals()和hashCode()不再是良定义的  方法bool">
+<meta property="og:updated_time" content="2018-04-27T12:41:12.694Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Carlyle">
-<meta name="twitter:description" content="toc: truelayout: posttitle: Java基础学习（一）date: 2017-03-05 10:55comments: truetags:  List&amp;lt;E&amp;gt;  是一个接口 继承的接口：Collection 间接继承的接口：Iterable 实现类：ArrayList、LinkedList、Vector等  ###简介  List是有序的Collection 可以对每个元">
+<meta name="twitter:title" content="Java基础学习（一）">
+<meta name="twitter:description" content="是一个接口 继承的接口：Collection 间接继承的接口：Iterable 实现类：ArrayList、LinkedList、Vector等  简介 List是有序的Collection 可以对每个元素的插入位置进行精准控制 可以根据索引访问元素   允许重复元素 有自己的迭代器 ListIterator 如果元素包含自身，equals()和hashCode()不再是良定义的  方法bool">
   
     <link rel="alternative" href="/atom.xml" title="Carlyle" type="application/atom+xml">
   
@@ -179,23 +179,65 @@
             <article id="post-List" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Java基础学习（一）
+    </h1>
+  
+
+        
+        <a href="/carlyle/2017/03/05/List/" class="archive-article-date">
+  	<time datetime="2017-03-05T02:55:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-03-05</time>
+</a>
+        
+		
+				<span class="archive-article-date">
+					阅读量 <span id="busuanzi_value_page_pv"></span>
+				</span>
+		
+      </header>
+		
+    
 
     <!-- 目录内容 -->
-   
+
+    <p class="show-toc-btn" id="show-toc-btn" onclick="showToc();" style="display:none">
+          <span class="btn-bg"></span>
+          <span class="btn-text">文章导航</span>
+          </p>
+  <div id="toc-article" class="toc-article">
+      <span id="toc-close" class="toc-close" title="隐藏导航" onclick="showBtn();">×</span>
+    <strong class="toc-title">文章目录</strong>
+           <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#简介"><span class="toc-number">1.</span> <span class="toc-text">简介</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#方法"><span class="toc-number">2.</span> <span class="toc-text">方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#子类介绍"><span class="toc-number">3.</span> <span class="toc-text">子类介绍</span></a></li></ol>
+         </div>
+   <script type="text/javascript">
+  function showToc(){
+    var toc_article = document.getElementById("toc-article");
+    var show_toc_btn = document.getElementById("show-toc-btn");
+    toc_article.setAttribute("style","display:block");
+    show_toc_btn.setAttribute("style","display:none");
+    };
+  function showBtn(){
+    var toc_article = document.getElementById("toc-article");
+    var show_toc_btn = document.getElementById("show-toc-btn");
+    toc_article.setAttribute("style","display:none");
+    show_toc_btn.setAttribute("style","display:block");
+    };
+   </script>
+         
 <!-- 目录内容结束 -->
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>toc: true<br>layout: post<br>title: Java基础学习（一）<br>date: 2017-03-05 10:55<br>comments: true<br>tags: </p>
-<h1 id="List-lt-E"><a href="#List-lt-E" class="headerlink" title="List&lt;E>"></a>List&lt;E></h1><hr>
-<ul>
+        <ul>
 <li>是一个接口</li>
 <li>继承的接口：Collection</li>
 <li>间接继承的接口：Iterable</li>
 <li>实现类：ArrayList、LinkedList、Vector等</li>
 </ul>
-<p>###简介</p>
-<ul>
+<h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h3><ul>
 <li>List是有序的<strong>Collection</strong><ul>
 <li>可以对每个元素的插入位置进行精准控制</li>
 <li>可以根据索引访问元素</li>
@@ -210,8 +252,7 @@
 <p><strong>Iterator iterator()</strong><br><strong>ListIterator listIterator()</strong><br><strong>ListIterator listIterator(int index)</strong>  </p>
 <p><strong>int indexOf(E e)</strong><br><strong>int lastIndexOf(E e)</strong></p>
 <p><strong>List<e> subList(int fromIndex, int toIndex)</e></strong></p>
-<p>###子类介绍</p>
-<ol>
+<h3 id="子类介绍"><a href="#子类介绍" class="headerlink" title="子类介绍"></a>子类介绍</h3><ol>
 <li>ArrayList是一个可改变大小的数组，当更多的元素加入到ArrayList中时，其大小将会动态的增长。内部的元素可以直接通过get与set方法进行访问，因为ArrayList本质上就是一个数组</li>
 <li>LinkedList 是一个双链表,在添加和删除元素时具有比ArrayList更好的性能.但在get与set方面弱于ArrayList.当然,这些对比都是指数据量很大或者操作很频繁的情况下的对比,如果数据和运算量很小,那么对比将失去意义。<br>LinkedList还实现了Queue接口，该接口比List提供了更多的方法，包括offer(),peek(),poll等</li>
 <li>Vector 和ArrayList类似,但属于强同步类。如果你的程序本身是线程安全的(thread-safe,没有在多个线程之间共享同一个集合/对象),那么使用ArrayList是更好的选择。<br>Vector和ArrayList在更多元素添加进来时会请求更大的空间。Vector每次请求其大小的双倍空间，而ArrayList每次对size增长50%.</li>
@@ -306,7 +347,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=https://github.com/xp-git/carlyle/2018/04/02/List/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=https://github.com/xp-git/carlyle/2017/03/05/List/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -320,18 +361,18 @@
   
 <nav id="article-nav">
   
-    <a href="/carlyle/2018/04/02/Vector源码剖析/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/carlyle/2017/03/05/Linkedlist/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          (no title)
+          Java基础学习（一）
         
       </div>
     </a>
   
   
-    <a href="/carlyle/2018/04/02/LinkedList源码剖析/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title"></div>
+    <a href="/carlyle/2017/03/04/Arraylist/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Java基础学习（一）</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -350,6 +391,19 @@
             </div>
         </div>
         
+        
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#简介"><span class="toc-number">1.</span> <span class="toc-text">简介</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#方法"><span class="toc-number">2.</span> <span class="toc-text">方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#子类介绍"><span class="toc-number">3.</span> <span class="toc-text">子类介绍</span></a></li></ol>
+                    </div>
+                </span>
+            </div>
+        </div>
         
     </div>
 </aside>
@@ -501,11 +555,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">redis</a>
+                <a href="javascript:void(0)" class="js-tag color5">设计架构</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">spring mvc</a>
+                <a href="javascript:void(0)" class="js-tag color1">Markdown语法</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -513,11 +567,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">设计架构</a>
+                <a href="javascript:void(0)" class="js-tag color1">spring mvc</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Markdown语法</a>
+                <a href="javascript:void(0)" class="js-tag color1">redis</a>
               </li>
             
             <div class="clearfix"></div>
