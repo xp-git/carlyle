@@ -8,17 +8,17 @@
   <link rel="dns-prefetch" href="https://github.com/xp-git/carlyle">
   <title>Java基础学习（一） | Carlyle</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="是一个类 实现的接口：List、Collection、Iterable、Serializable、Cloneable、Deque，Queue 子类：没有子类  简介  它是链表 它还是队列、双端队列 它还可以用作堆栈 和ArrayList一样，不具有线程安全性  关于添加元素 boolean add(E e)添加到链表末尾 void add(int index, E e)添加到指定位置 bool">
+  <meta name="description" content="LinkedList&amp;lt;E&amp;gt;  是一个类 实现的接口：List、Collection、Iterable、Serializable、Cloneable、Deque，Queue 子类：没有子类  简介  它是链表 它还是队列、双端队列 它还可以用作堆栈 和ArrayList一样，不具有线程安全性  关于添加元素 boolean add(E e)添加到链表末尾 void add(int index,">
 <meta name="keywords" content="redis,前端,js,jquery,javascript,html5,Markdown语法,开发者,程序猿,程序媛,极客,编程,代码,开源,IT网站,Developer,Programmer,Coder,Geek,html,css,css3,用户体验,java,linux">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Java基础学习（一）">
 <meta property="og:url" content="https://github.com/xp-git/carlyle/2017/03/05/Linkedlist/index.html">
 <meta property="og:site_name" content="Carlyle">
-<meta property="og:description" content="是一个类 实现的接口：List、Collection、Iterable、Serializable、Cloneable、Deque，Queue 子类：没有子类  简介  它是链表 它还是队列、双端队列 它还可以用作堆栈 和ArrayList一样，不具有线程安全性  关于添加元素 boolean add(E e)添加到链表末尾 void add(int index, E e)添加到指定位置 bool">
-<meta property="og:updated_time" content="2018-04-27T12:41:45.001Z">
+<meta property="og:description" content="LinkedList&amp;lt;E&amp;gt;  是一个类 实现的接口：List、Collection、Iterable、Serializable、Cloneable、Deque，Queue 子类：没有子类  简介  它是链表 它还是队列、双端队列 它还可以用作堆栈 和ArrayList一样，不具有线程安全性  关于添加元素 boolean add(E e)添加到链表末尾 void add(int index,">
+<meta property="og:updated_time" content="2018-04-27T13:14:46.478Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Java基础学习（一）">
-<meta name="twitter:description" content="是一个类 实现的接口：List、Collection、Iterable、Serializable、Cloneable、Deque，Queue 子类：没有子类  简介  它是链表 它还是队列、双端队列 它还可以用作堆栈 和ArrayList一样，不具有线程安全性  关于添加元素 boolean add(E e)添加到链表末尾 void add(int index, E e)添加到指定位置 bool">
+<meta name="twitter:description" content="LinkedList&amp;lt;E&amp;gt;  是一个类 实现的接口：List、Collection、Iterable、Serializable、Cloneable、Deque，Queue 子类：没有子类  简介  它是链表 它还是队列、双端队列 它还可以用作堆栈 和ArrayList一样，不具有线程安全性  关于添加元素 boolean add(E e)添加到链表末尾 void add(int index,">
   
     <link rel="alternative" href="/atom.xml" title="Carlyle" type="application/atom+xml">
   
@@ -210,7 +210,7 @@
   <div id="toc-article" class="toc-article">
       <span id="toc-close" class="toc-close" title="隐藏导航" onclick="showBtn();">×</span>
     <strong class="toc-title">文章目录</strong>
-           <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#简介"><span class="toc-number">1.</span> <span class="toc-text">简介</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#关于添加元素"><span class="toc-number">2.</span> <span class="toc-text">关于添加元素</span></a></li></ol>
+           <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#LinkedList-lt-E"><span class="toc-number">1.</span> <span class="toc-text">LinkedList&lt;E&gt;</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#简介"><span class="toc-number">1.1.</span> <span class="toc-text">简介</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#关于添加元素"><span class="toc-number">1.2.</span> <span class="toc-text">关于添加元素</span></a></li></ol></li></ol>
          </div>
    <script type="text/javascript">
   function showToc(){
@@ -231,7 +231,8 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <ul>
+        <h1 id="LinkedList-lt-E"><a href="#LinkedList-lt-E" class="headerlink" title="LinkedList&lt;E>"></a>LinkedList&lt;E></h1><hr>
+<ul>
 <li>是一个类</li>
 <li>实现的接口：List、Collection、Iterable、Serializable、Cloneable、Deque，Queue</li>
 <li>子类：没有子类</li>
@@ -351,17 +352,17 @@
   
 <nav id="article-nav">
   
-    <a href="/carlyle/2017/03/11/Queue/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/carlyle/2017/03/06/LinkedList源码剖析/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          Java基础学习（一）
+          LinkedList源码
         
       </div>
     </a>
   
   
-    <a href="/carlyle/2017/03/05/List/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/carlyle/2017/03/05/LinkedHashMap源码剖析/" id="article-nav-older" class="article-nav-link-wrap">
       <div class="article-nav-title">Java基础学习（一）</div>
       <i class="icon-circle-right"></i>
     </a>
@@ -389,7 +390,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#简介"><span class="toc-number">1.</span> <span class="toc-text">简介</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#关于添加元素"><span class="toc-number">2.</span> <span class="toc-text">关于添加元素</span></a></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#LinkedList-lt-E"><span class="toc-number">1.</span> <span class="toc-text">LinkedList&lt;E&gt;</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#简介"><span class="toc-number">1.1.</span> <span class="toc-text">简介</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#关于添加元素"><span class="toc-number">1.2.</span> <span class="toc-text">关于添加元素</span></a></li></ol></li></ol>
                     </div>
                 </span>
             </div>
@@ -537,7 +538,7 @@ MathJax.Hub.Queue(function() {
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">I</a>
+                <a href="javascript:void(0)" class="js-tag color1">spring mvc</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -545,7 +546,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">spring mvc</a>
+                <a href="javascript:void(0)" class="js-tag color2">I</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">JavaSE</a>
               </li>
              
               <li class="article-tag-list-item">

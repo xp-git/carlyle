@@ -6,19 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://github.com/xp-git/carlyle">
-  <title>Carlyle</title>
+  <title>分布式与集群 | Carlyle</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="toc: truetitle: “分布式与集群”date: 2018-03-14 22:55comments: truetags:  - 设计架构分布式：一个业务分拆多个子业务，部署在不同的服务器上 集群：同一个业务，部署在多个服务器上">
+  <meta name="description" content="- 设计架构分布式：一个业务分拆多个子业务，部署在不同的服务器上 集群：同一个业务，部署在多个服务器上">
 <meta name="keywords" content="redis,前端,js,jquery,javascript,html5,Markdown语法,开发者,程序猿,程序媛,极客,编程,代码,开源,IT网站,Developer,Programmer,Coder,Geek,html,css,css3,用户体验,java,linux">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Carlyle">
+<meta property="og:title" content="分布式与集群">
 <meta property="og:url" content="https://github.com/xp-git/carlyle/2018/03/14/分布式与集群/index.html">
 <meta property="og:site_name" content="Carlyle">
-<meta property="og:description" content="toc: truetitle: “分布式与集群”date: 2018-03-14 22:55comments: truetags:  - 设计架构分布式：一个业务分拆多个子业务，部署在不同的服务器上 集群：同一个业务，部署在多个服务器上">
-<meta property="og:updated_time" content="2018-04-27T12:49:00.782Z">
+<meta property="og:description" content="- 设计架构分布式：一个业务分拆多个子业务，部署在不同的服务器上 集群：同一个业务，部署在多个服务器上">
+<meta property="og:updated_time" content="2018-04-27T13:14:11.400Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Carlyle">
-<meta name="twitter:description" content="toc: truetitle: “分布式与集群”date: 2018-03-14 22:55comments: truetags:  - 设计架构分布式：一个业务分拆多个子业务，部署在不同的服务器上 集群：同一个业务，部署在多个服务器上">
+<meta name="twitter:title" content="分布式与集群">
+<meta name="twitter:description" content="- 设计架构分布式：一个业务分拆多个子业务，部署在不同的服务器上 集群：同一个业务，部署在多个服务器上">
   
     <link rel="alternative" href="/atom.xml" title="Carlyle" type="application/atom+xml">
   
@@ -179,16 +179,59 @@
             <article id="post-分布式与集群" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      分布式与集群
+    </h1>
+  
+
+        
+        <a href="/carlyle/2018/03/14/分布式与集群/" class="archive-article-date">
+  	<time datetime="2018-03-14T14:55:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-03-14</time>
+</a>
+        
+		
+				<span class="archive-article-date">
+					阅读量 <span id="busuanzi_value_page_pv"></span>
+				</span>
+		
+      </header>
+		
+    
 
     <!-- 目录内容 -->
-   
+
+    <p class="show-toc-btn" id="show-toc-btn" onclick="showToc();" style="display:none">
+          <span class="btn-bg"></span>
+          <span class="btn-text">文章导航</span>
+          </p>
+  <div id="toc-article" class="toc-article">
+      <span id="toc-close" class="toc-close" title="隐藏导航" onclick="showBtn();">×</span>
+    <strong class="toc-title">文章目录</strong>
+           <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#设计架构"><span class="toc-number">1.</span> <span class="toc-text">- 设计架构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#分布式："><span class="toc-number">2.</span> <span class="toc-text">分布式：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#集群："><span class="toc-number">3.</span> <span class="toc-text">集群：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#单机结构"><span class="toc-number">4.</span> <span class="toc-text">单机结构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#集群结构"><span class="toc-number">5.</span> <span class="toc-text">集群结构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#分布式结构"><span class="toc-number">6.</span> <span class="toc-text">分布式结构</span></a></li></ol>
+         </div>
+   <script type="text/javascript">
+  function showToc(){
+    var toc_article = document.getElementById("toc-article");
+    var show_toc_btn = document.getElementById("show-toc-btn");
+    toc_article.setAttribute("style","display:block");
+    show_toc_btn.setAttribute("style","display:none");
+    };
+  function showBtn(){
+    var toc_article = document.getElementById("toc-article");
+    var show_toc_btn = document.getElementById("show-toc-btn");
+    toc_article.setAttribute("style","display:none");
+    show_toc_btn.setAttribute("style","display:block");
+    };
+   </script>
+         
 <!-- 目录内容结束 -->
     
     <div class="article-entry" itemprop="articleBody">
       
-        <hr>
-<p>toc: true<br>title: “分布式与集群”<br>date: 2018-03-14 22:55<br>comments: true<br>tags: </p>
-<h2 id="设计架构"><a href="#设计架构" class="headerlink" title="- 设计架构"></a>- 设计架构</h2><h2 id="分布式："><a href="#分布式：" class="headerlink" title="分布式："></a>分布式：</h2><p>一个业务分拆多个子业务，部署在不同的服务器上</p>
+        <h2 id="设计架构"><a href="#设计架构" class="headerlink" title="- 设计架构"></a>- 设计架构</h2><h2 id="分布式："><a href="#分布式：" class="headerlink" title="分布式："></a>分布式：</h2><p>一个业务分拆多个子业务，部署在不同的服务器上</p>
 <h2 id="集群："><a href="#集群：" class="headerlink" title="集群："></a>集群：</h2><p>同一个业务，部署在多个服务器上<br><a id="more"></a> </p>
 <h2 id="单机结构"><a href="#单机结构" class="headerlink" title="单机结构"></a>单机结构</h2><p>我想大家最最最熟悉的就是单机结构，一个系统业务量很小的时候所有的代码都放在一个项目中就好了，然后这个项目部署在一台服务器上就好了。整个项目所有的服务都由这台服务器提供。这就是单机结构。</p>
 <p>那么，单机结构有啥缺点呢？我想缺点是显而易见的，单机的处理能力毕竟是有限的，当你的业务增长到一定程度的时候，单机的硬件资源将无法满足你的业务需求。此时便出现了集群模式，往下接着看。</p>
@@ -323,8 +366,8 @@
     </a>
   
   
-    <a href="/carlyle/2018/03/14/springmvc文件上传/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">spring mvc 上传文件</div>
+    <a href="/carlyle/2018/03/14/1测试111/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">哈哈哈哈</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -343,6 +386,19 @@
             </div>
         </div>
         
+        
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#设计架构"><span class="toc-number">1.</span> <span class="toc-text">- 设计架构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#分布式："><span class="toc-number">2.</span> <span class="toc-text">分布式：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#集群："><span class="toc-number">3.</span> <span class="toc-text">集群：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#单机结构"><span class="toc-number">4.</span> <span class="toc-text">单机结构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#集群结构"><span class="toc-number">5.</span> <span class="toc-text">集群结构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#分布式结构"><span class="toc-number">6.</span> <span class="toc-text">分布式结构</span></a></li></ol>
+                    </div>
+                </span>
+            </div>
+        </div>
         
     </div>
 </aside>
@@ -486,7 +542,7 @@ MathJax.Hub.Queue(function() {
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">I</a>
+                <a href="javascript:void(0)" class="js-tag color1">spring mvc</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -494,7 +550,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">spring mvc</a>
+                <a href="javascript:void(0)" class="js-tag color2">I</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">JavaSE</a>
               </li>
              
               <li class="article-tag-list-item">
