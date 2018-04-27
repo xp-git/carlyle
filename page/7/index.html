@@ -177,6 +177,72 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-ArrayList 、 LinkedList 、 Vector 的底层实现和区别" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+
+    <!-- 目录内容 -->
+   
+<!-- 目录内容结束 -->
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>toc: true<br>layout: post<br>title: Java基础学习（一）<br>date: 2017-03-05 20:55<br>comments: true<br>tags: </p>
+<p>#Java基础之集合List-ArrayList、LinkedList、Vector的底层实现和区别</p>
+<ol>
+<li>ArrayList底层实际是采用数组实现的（并且该数组的类型是Object类型的）</li>
+<li>如果jdk6,采用Array.copyOf()方法来生成一个新的数组，如果是jdk5，采用的是System.arraycopy()方法（当添加的数据量大于数组的长度的时候）</li>
+<li>List list = new ArrayList()时，底层会生成一个长度为10的数组来存放对象</li>
+<li>ArrayList、Vector底部都是采用数组实现的</li>
+<li>对于ArrayList，方法都不是同步的，对于Vector，大部分public方法都是同步的</li>
+<li>LinkedList采用双向循环列表</li>
+<li>对于ArrayList，查询速度很快，增加和删除（非最后一个节点）操作非常慢（本质上由数组的特性决定的）</li>
+<li>对于LinkedList，查询速度非常慢，增加和删除操作非常快（本质上是由双向循环列表决定的）</li>
+</ol>
+<p>参考博客：</p>
+<p><a href="http://blog.csdn.net/sundenskyqq/article/details/27630179" target="_blank" rel="noopener">http://blog.csdn.net/sundenskyqq/article/details/27630179</a></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/carlyle/2018/04/02/ArrayList 、 LinkedList 、 Vector 的底层实现和区别/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-分布式与集群" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -235,95 +301,9 @@
 
 
   
-    <article id="post-springmvc文件上传" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/carlyle/2018/03/14/springmvc文件上传/">spring mvc 上传文件</a>
-    </h1>
-  
-
-        
-        <a href="/carlyle/2018/03/14/springmvc文件上传/" class="archive-article-date">
-  	<time datetime="2018-03-14T11:55:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-03-14</time>
-</a>
-        
-		
-      </header>
-		
-    
-
-    <!-- 目录内容 -->
-   
-<!-- 目录内容结束 -->
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="spring-mvc-上传文件"><a href="#spring-mvc-上传文件" class="headerlink" title="spring mvc 上传文件"></a>spring mvc 上传文件</h1><p>org.springframework.web.multipart.MultipartHttpServletRequest 上传文件</p>
-<p>jsp code<br><img src="http://img.blog.csdn.net/20180314160417561?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMjQwNzY2ODc=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="这里写图片描述"></p>
-<p>spirng context.xml 配置文件</p>
-<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;bean <span class="attribute">id</span>=<span class="string">"multipartResolver"</span> <span class="attribute">class</span>=<span class="string">"org.springframework.web.multipart.commons.CommonsMultipartResolver"</span>/&gt;</span><br></pre></td></tr></table></figure>
-        
-          <a class="article-more-a" href="/carlyle/2018/03/14/springmvc文件上传/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">spring mvc</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/carlyle/2018/03/14/springmvc文件上传/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/carlyle/page/6/">&laquo; Prev</a><a class="page-number" href="/carlyle/">1</a><span class="space">&hellip;</span><a class="page-number" href="/carlyle/page/5/">5</a><a class="page-number" href="/carlyle/page/6/">6</a><span class="page-number current">7</span><a class="page-number" href="/carlyle/page/8/">8</a><a class="page-number" href="/carlyle/page/9/">9</a><span class="space">&hellip;</span><a class="page-number" href="/carlyle/page/14/">14</a><a class="extend next" rel="next" href="/carlyle/page/8/">Next &raquo;</a>
+      <a class="extend prev" rel="prev" href="/carlyle/page/6/">&laquo; Prev</a><a class="page-number" href="/carlyle/">1</a><span class="space">&hellip;</span><a class="page-number" href="/carlyle/page/5/">5</a><a class="page-number" href="/carlyle/page/6/">6</a><span class="page-number current">7</span><a class="page-number" href="/carlyle/page/8/">8</a><a class="page-number" href="/carlyle/page/9/">9</a><span class="space">&hellip;</span><a class="page-number" href="/carlyle/page/15/">15</a><a class="extend next" rel="next" href="/carlyle/page/8/">Next &raquo;</a>
     </nav>
   
 
@@ -444,11 +424,11 @@ MathJax.Hub.Queue(function() {
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">I</a>
+                <a href="javascript:void(0)" class="js-tag color2">Java基础</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Java基础</a>
+                <a href="javascript:void(0)" class="js-tag color2">I</a>
               </li>
              
               <li class="article-tag-list-item">
